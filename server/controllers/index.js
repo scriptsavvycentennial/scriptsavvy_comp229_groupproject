@@ -20,3 +20,7 @@ module.exports.displayServicesPage = (req, res, next) => {
 module.exports.displayContactPage = (req, res, next) => {
     res.render('index', { title: 'Contact Us' });
 };
+
+module.exports.displayGameList = (req, res, next) => {
+    res.render('game/list', { title: 'Game page' });
+};
