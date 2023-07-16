@@ -1,0 +1,74 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<!-- Content for the Add Page -->
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1><%= title %></h1>
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="nameTextField">Game Title</label>
+                    <input type="text" class="form-control"
+                    id="nameTextField"
+                    placeholder="Enter the Game Title"
+                    name="name" 
+                    value="<%= game.name %>"
+                    required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullNameTextField">Full name</label>
+                    <input type="text" class="form-control"
+                    id="fullNameTextField"
+                    placeholder="Enter your full name"
+                    name="fullName" required>
+                    value="<%= contact.fullName %>"
+                    required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumberTextField">Phone number</label>
+                    <input type="text" class="form-control"
+                    id="phoneNumberTextField"
+                    placeholder="Enter the Phone number"
+                    name="phoneNumber" required>
+                    value="<%= contact.phoneNumber %>"
+                    required>
+                </div>
+
+                <div class="form-group">
+                    <label for="messageTextField">Message</label>
+                    <textarea type="text" class="form-control"
+                    id="messageTextField"
+                    placeholder="Enter the message"
+                    name="message" required></textarea>
+                    value="<%= contact.message %>"
+                    required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nameTextField">Rating</label>
+                    <input type="text" class="form-control"
+                    id="ratingTextField"
+                    placeholder="Enter webpage rating out of 10"
+                    name="rating" required>
+                    value="<%= contact.rating %>"
+                    required>
+                </div>
+
+                <br>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-edit"></i> Submit</button>
+
+                    <a href="/contact-list" class="btn btn-warning">
+                        <i class="fas fa-undo"></i> Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>

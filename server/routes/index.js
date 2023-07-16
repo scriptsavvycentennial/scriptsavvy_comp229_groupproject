@@ -3,6 +3,7 @@ var router = express.Router();
 
 let indexController = require('../controllers/index')
 let gameController = require('../controllers/game')
+let contactController = require('../controllers/contact')
 
 /* GET home page. */
 router.get('/', indexController.displayHomePage);
@@ -20,7 +21,7 @@ router.get('/products', indexController.displayProductsPage);
 router.get('/services', indexController.displayServicesPage);
 
 /* GET contact us page. */
-router.get('/contact', indexController.displayContactPage);
+router.get('/contact-list', contactController.displayContactList);
 
 /* GET contact us page. */
 router.get('/game-list', gameController.displayGameList);

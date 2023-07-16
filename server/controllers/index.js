@@ -17,8 +17,8 @@ module.exports.displayServicesPage = (req, res, next) => {
     res.render('index', { title: 'Services' });
 };
 
-module.exports.displayContactPage = (req, res, next) => {
-    res.render('index', { title: 'Contact Us' });
+module.exports.displayContactList = (req, res, next) => {
+    res.render('contact/list', { title: 'Contact Us' });
 };
 
 module.exports.displayGameList = (req, res, next) => {
