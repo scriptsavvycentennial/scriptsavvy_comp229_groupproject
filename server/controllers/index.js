@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'ScriptSavvy Homepage' });
 };
 
 module.exports.displayAboutPage = (req, res, next) => {
@@ -22,5 +22,5 @@ module.exports.displayContactPage = (req, res, next) => {
 };
 
 module.exports.displayGameList = (req, res, next) => {
-    res.render('game/list', { title: 'Game page' });
+    res.render('game/list', { title: 'Game list page' });
 };
