@@ -3,26 +3,26 @@ let router = express.Router();
 let mongoose = require('mongoose');
 
 // connect to our Survey Model
-let Survey = require('../models/survey');
+let contact = require('../models/contact');
 
-let surveyController = require('../controllers/survey')
+let contactController = require('../controllers/contact')
 
 // Get Route for the Survey List page - READ Operation
-router.get('/', surveyController.displaySurveyList);
+router.get('/', contactController.displayContactList);
 
 // Get Route for displaying the Add page - CREATE Operation
-router.get('/add', surveyController.displayAddPage);
+router.get('/add', contactController.displayAddPage);
 
 // Post Route for processing the Add Page - CREATE Operation
-router.post('/add', surveyController.processAddPage);
+router.post('/add', contactController.processAddPage);
 
 // Get Route for displaying the Edit Page - UPDATE Operation
-router.get('/edit/:id', surveyController.displayEditPage);
+router.get('/edit/:id', contactController.displayEditPage);
 
 // Post Route for processing the Edit Page - UPDATE Operation
-router.post('/edit/:id', surveyController.processEditPage);
+router.post('/edit/:id', contactController.processEditPage);
 
 // Get to perform Deletion - DElETE Operation
-router.get('/delete/:id', surveyController.performDelete);
+router.get('/delete/:id', contactController.performDelete);
 
 module.exports = router;
