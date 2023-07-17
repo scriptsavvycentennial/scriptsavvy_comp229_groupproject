@@ -9,50 +9,52 @@
             <h1><%= title %></h1>
             <form class="form" method="POST">
                 <div class="form-group">
-                    <label for="nameTextField">Game Title</label>
+                    <label for="nameTextField">Survey Title</label>
                     <input type="text" class="form-control"
                     id="nameTextField"
-                    placeholder="Enter the Game Title"
+                    placeholder="Enter the Survey Title"
                     name="name" 
-                    value="<%= game.name %>"
+                    value="<%= survey.name %>"
                     required>
                 </div>
 
                 <div class="form-group">
-                    <label for="developerTextField">Developer</label>
+                    <label for="fullNameTextField">Full name</label>
                     <input type="text" class="form-control"
-                    id="developerTextField"
-                    placeholder="Enter the Game's Developer"
-                    name="developer" 
-                    value="<%= game.developer %>"
+                    id="fullNameTextField"
+                    placeholder="Enter your full name"
+                    name="fullName" required>
+                    value="<%= contact.fullName %>"
                     required>
                 </div>
 
                 <div class="form-group">
-                    <label for="releasedTextField">Released</label>
+                    <label for="phoneNumberTextField">Phone number</label>
                     <input type="text" class="form-control"
-                    id="releasedTextField"
-                    placeholder="Enter the Year of Released"
-                    name="released" 
-                    value="<%= game.released %>"
+                    id="phoneNumberTextField"
+                    placeholder="Enter the Phone number"
+                    name="phoneNumber" required>
+                    value="<%= contact.phoneNumber %>"
                     required>
                 </div>
 
                 <div class="form-group">
-                    <label for="descriptionTextField">Description</label>
+                    <label for="messageTextField">Message</label>
                     <textarea type="text" class="form-control"
-                    id="descriptionTextField"
-                    placeholder="Enter the description of the Game"
-                    name="description" required><%= game.description %></textarea>
+                    id="messageTextField"
+                    placeholder="Enter the message"
+                    name="message" required></textarea>
+                    value="<%= contact.message %>"
+                    required>
                 </div>
 
                 <div class="form-group">
-                    <label for="nameTextField">Price</label>
+                    <label for="nameTextField">Rating</label>
                     <input type="text" class="form-control"
-                    id="priceTextField"
-                    placeholder="Enter the Game's Price"
-                    name="price" 
-                    value="<%= game.price %>"
+                    id="ratingTextField"
+                    placeholder="Enter webpage rating out of 10"
+                    name="rating" required>
+                    value="<%= contact.rating %>"
                     required>
                 </div>
 
@@ -60,7 +62,7 @@
                 <button class="btn btn-primary" type="submit">
                     <i class="fas fa-edit"></i> Submit</button>
 
-                    <a href="/game-list" class="btn btn-warning">
+                    <a href="/contact-list" class="btn btn-warning">
                         <i class="fas fa-undo"></i> Cancel</a>
             </form>
         </div>

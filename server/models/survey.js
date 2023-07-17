@@ -2,13 +2,11 @@ let mongoose = require('mongoose');
 
 //create a model class
 let surveyModel = mongoose.Schema({
-    fullName: String,
-    phoneNumber: Number,
-    message: String,
-    rating: Number
+    title: String,
+    question: String,
 },
 {
-    collection: 'surveyMessages'
+    collection: 'survey'
 });
 
-module.exports = mongoose.model('survey', surveyModel);
+module.exports = mongoose.model('Survey', surveyModel);
