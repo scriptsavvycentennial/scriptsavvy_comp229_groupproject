@@ -15,14 +15,21 @@
         <% } %>
           <a class="nav-link" href="/home"><i class="fas fa-lg fa-laptop-house"></i> Home </a>
         </li>
-
         
-        <% if (title == "Surveys") { %>
+        <% if (title == "Survey") { %>
           <li class="nav-item active">
           <% } else  { %>
           <li class="nav-item">
           <% } %>
-            <a class="nav-link" href="/survey-list"><i class="fa-solid fa-square-poll-horizontal"></i> Surveys </a>
+            <a class="nav-link" href="/survey-list/add"><i class="fa-solid fa-circle-plus"></i> Create a new Survey </a>
+          </li>
+
+        <% if (title == "Survey List") { %>
+          <li class="nav-item active">
+          <% } else  { %>
+          <li class="nav-item">
+          <% } %>
+            <a class="nav-link" href="/survey-list"><i class="fa-solid fa-square-poll-horizontal"></i> Survey List </a>
           </li>
 
         <% if (title == "About") { %>

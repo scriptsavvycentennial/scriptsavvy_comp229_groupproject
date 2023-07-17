@@ -18,7 +18,7 @@ module.exports.displaySurveyList = async (req, res, next) => {
 
 module.exports.displayAddPage = async (req, res, next) =>{
     try {
-        res.render('survey/add', {title: 'Add Survey'})
+        res.render('survey/add', {title: 'Create a new Survey'})
     } catch (err) {
         console.error(err);
     }
