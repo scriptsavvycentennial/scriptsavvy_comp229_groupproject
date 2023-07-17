@@ -3,14 +3,14 @@ let router = express.Router();
 let mongoose = require('mongoose');
 
 // create a reference to the model
-let Contact = require('../models/contact');
+let Survey = require('../models/survey');
 
-module.exports.displayContactList = async (req, res, next) => {
+module.exports.displaySurveyList = async (req, res, next) => {
     try {
-        let contactList = await Contact.find();
+        let surveyList = await Survey.find();
         // console.log(contactList)
 
-        res.render('contact/list', {title: 'Contact', ContactList: contactList})
+        res.render('survey/list', {title: 'Survey', SurveyList: surveyList})
     } catch (err) {
         console.error(err);
     }
@@ -18,14 +18,14 @@ module.exports.displayContactList = async (req, res, next) => {
 
 module.exports.displayAddPage = async (req, res, next) =>{
     try {
-        res.render('contact/add', {title: 'Add contact'})
+        res.render('survey/add', {title: 'Add survey'})
     } catch (err) {
         console.error(err);
     }
 };
 
 module.exports.processAddPage = async (req, res, next) =>{
-    let newContact = new Contact({
+    let newSurvey = new Survey({
         "fullName": req.body.fullName,
         "phoneNumber": req.body.phoneNumber,
         "message": req.body.message,
@@ -33,8 +33,8 @@ module.exports.processAddPage = async (req, res, next) =>{
     });
 
     try{
-        await newContact.save();
-        res.redirect('/contact-list');
+        await newSurvey.save();
+        res.redirect('/survey-list');
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -45,8 +45,8 @@ module.exports.displayEditPage = async (req, res, next) =>{
     let id = req.params.id;
 
     try {
-        let contactToEdit = await Contact.findById(id);
-        res.render('contact/edit', {title: 'Edit contact', game: contactToEdit});
+        let surveyToEdit = await Survey.findById(id);
+        res.render('survey/edit', {title: 'Edit survey', game: surveyToEdit});
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -55,7 +55,7 @@ module.exports.displayEditPage = async (req, res, next) =>{
 
 module.exports.processEditPage = async (req, res, next) =>{
     let id = req.params.id;
-    let updatedContact = {
+    let updatedSurvey = {
         "fullName": req.body.fullName,
         "phoneNumber": req.body.phoneNumber,
         "message": req.body.message,
@@ -63,8 +63,8 @@ module.exports.processEditPage = async (req, res, next) =>{
     };
 
     try {
-        await Contact.updateOne({_id: id}, updatedContact);
-        res.redirect('/contact-list');
+        await Survey.updateOne({_id: id}, updatedSurvey);
+        res.redirect('/survey-list');
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -75,8 +75,8 @@ module.exports.performDelete = async (req, res, next) =>{
     let id = req.params.id;
 
     try {
-        await Contact.findByIdAndRemove(id);
-        res.redirect('/contact-list');
+        await Survey.findByIdAndRemove(id);
+        res.redirect('/survey-list');
     } catch (err) {
         onsole.log(err);
         res.status(500).send(err);
