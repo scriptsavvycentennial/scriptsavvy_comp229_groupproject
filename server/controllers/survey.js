@@ -8,9 +8,9 @@ let Survey = require('../models/survey');
 module.exports.displaySurveyList = async (req, res, next) => {
     try {
         let surveyList = await Survey.find();
-        // console.log(contactList)
+        // console.log(surveyList)
 
-        res.render('survey/list', {title: 'Survey', SurveyList: surveyList})
+        res.render('survey/list', {title: 'Surveys', SurveyList: surveyList})
     } catch (err) {
         console.error(err);
     }
@@ -18,7 +18,7 @@ module.exports.displaySurveyList = async (req, res, next) => {
 
 module.exports.displayAddPage = async (req, res, next) =>{
     try {
-        res.render('survey/add', {title: 'Add survey'})
+        res.render('survey/add', {title: 'Create a new Survey'})
     } catch (err) {
         console.error(err);
     }
@@ -26,10 +26,8 @@ module.exports.displayAddPage = async (req, res, next) =>{
 
 module.exports.processAddPage = async (req, res, next) =>{
     let newSurvey = new Survey({
-        "fullName": req.body.fullName,
-        "phoneNumber": req.body.phoneNumber,
-        "message": req.body.message,
-        "rating": req.body.rating
+        "title": req.body.title,
+        "question": req.body.question,
     });
 
     try{
@@ -46,7 +44,7 @@ module.exports.displayEditPage = async (req, res, next) =>{
 
     try {
         let surveyToEdit = await Survey.findById(id);
-        res.render('survey/edit', {title: 'Edit survey', game: surveyToEdit});
+        res.render('survey/edit', {title: 'Edit Survey', survey: surveyToEdit});
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -56,10 +54,8 @@ module.exports.displayEditPage = async (req, res, next) =>{
 module.exports.processEditPage = async (req, res, next) =>{
     let id = req.params.id;
     let updatedSurvey = {
-        "fullName": req.body.fullName,
-        "phoneNumber": req.body.phoneNumber,
-        "message": req.body.message,
-        "rating": req.body.rating
+        "title": req.body.title,
+        "question": req.body.question,
     };
 
     try {
