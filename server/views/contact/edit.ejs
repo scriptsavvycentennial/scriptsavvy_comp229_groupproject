@@ -9,21 +9,11 @@
             <h1><%= title %></h1>
             <form class="form" method="POST">
                 <div class="form-group">
-                    <label for="nameTextField">Survey Title</label>
-                    <input type="text" class="form-control"
-                    id="nameTextField"
-                    placeholder="Enter the Survey Title"
-                    name="name" 
-                    value="<%= survey.name %>"
-                    required>
-                </div>
-
-                <div class="form-group">
                     <label for="fullNameTextField">Full name</label>
                     <input type="text" class="form-control"
                     id="fullNameTextField"
                     placeholder="Enter your full name"
-                    name="fullName" required>
+                    name="fullName"
                     value="<%= contact.fullName %>"
                     required>
                 </div>
@@ -33,7 +23,7 @@
                     <input type="text" class="form-control"
                     id="phoneNumberTextField"
                     placeholder="Enter the Phone number"
-                    name="phoneNumber" required>
+                    name="phoneNumber"
                     value="<%= contact.phoneNumber %>"
                     required>
                 </div>
@@ -43,9 +33,7 @@
                     <textarea type="text" class="form-control"
                     id="messageTextField"
                     placeholder="Enter the message"
-                    name="message" required></textarea>
-                    value="<%= contact.message %>"
-                    required>
+                    name="message" required><%= contact.message %></textarea>
                 </div>
 
                 <div class="form-group">
@@ -53,7 +41,7 @@
                     <input type="text" class="form-control"
                     id="ratingTextField"
                     placeholder="Enter webpage rating out of 10"
-                    name="rating" required>
+                    name="rating"
                     value="<%= contact.rating %>"
                     required>
                 </div>

@@ -46,7 +46,7 @@ module.exports.displayEditPage = async (req, res, next) =>{
 
     try {
         let contactToEdit = await Contact.findById(id);
-        res.render('contact/edit', {title: 'Edit contact', survey: contactToEdit});
+        res.render('contact/edit', {title: 'Edit contact', contact: contactToEdit});
     } catch (err) {
         console.log(err);
         res.status(500).send(err);

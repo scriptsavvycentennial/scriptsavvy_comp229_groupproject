@@ -11,4 +11,4 @@ let contactModel = mongoose.Schema({
     collection: 'contactMessages'
 });
 
-module.exports = mongoose.model('contact', contactModel);
+module.exports = mongoose.model('Contact', contactModel);

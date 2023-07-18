@@ -27,7 +27,7 @@ module.exports.displayAddPage = async (req, res, next) =>{
 module.exports.processAddPage = async (req, res, next) =>{
     let newSurvey = new Survey({
         "title": req.body.title,
-        "question": req.body.question,
+        "question": req.body.question
     });
 
     try{
@@ -55,7 +55,7 @@ module.exports.processEditPage = async (req, res, next) =>{
     let id = req.params.id;
     let updatedSurvey = {
         "title": req.body.title,
-        "question": req.body.question,
+        "question": req.body.question
     };
 
     try {
