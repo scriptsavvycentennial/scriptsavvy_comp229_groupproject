@@ -42,7 +42,11 @@ module.exports.displayAddPage = async (req, res, next) =>{
 module.exports.processAddPage = async (req, res, next) =>{
     let newSurvey = new Survey({
         "title": req.body.title,
+<<<<<<< HEAD
         "question": req.body.question,
+=======
+        "question": req.body.question
+>>>>>>> f8849ecf643a0012d6e3d3d3d79f5912298c8a44
     });
 
     try{
@@ -70,7 +74,11 @@ module.exports.processEditPage = async (req, res, next) =>{
     let id = req.params.id;
     let updatedSurvey = {
         "title": req.body.title,
+<<<<<<< HEAD
         "question": req.body.question,
+=======
+        "question": req.body.question
+>>>>>>> f8849ecf643a0012d6e3d3d3d79f5912298c8a44
     };
 
     try {

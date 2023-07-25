@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* 
 Group Members: 	Alberto Mcwhirter-Javier	- 301203948 - amcwhir1@my.centennialcollege.ca 	- Lead Software Engineer
 		Andre Henrique Moyses de Assis	- 301282773 - amoysesd@my.centennialcollege.ca 	- Project Manager
@@ -13,6 +14,8 @@ File: contact.js
 Date: 2023-07-23
 */
 
+=======
+>>>>>>> f8849ecf643a0012d6e3d3d3d79f5912298c8a44
 let mongoose = require('mongoose');
 
 //create a model class
@@ -26,4 +29,8 @@ let contactModel = mongoose.Schema({
     collection: 'contactMessages'
 });
 
+<<<<<<< HEAD
 module.exports = mongoose.model('contact', contactModel);
+=======
+module.exports = mongoose.model('Contact', contactModel);
+>>>>>>> f8849ecf643a0012d6e3d3d3d79f5912298c8a44

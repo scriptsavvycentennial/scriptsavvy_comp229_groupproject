@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* 
 Group Members: 	Alberto Mcwhirter-Javier	- 301203948 - amcwhir1@my.centennialcollege.ca 	- Lead Software Engineer
 		Andre Henrique Moyses de Assis	- 301282773 - amoysesd@my.centennialcollege.ca 	- Project Manager
@@ -13,6 +14,8 @@ File: contact.js
 Date: 2023-07-23
 */
 
+=======
+>>>>>>> f8849ecf643a0012d6e3d3d3d79f5912298c8a44
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
@@ -61,7 +64,11 @@ module.exports.displayEditPage = async (req, res, next) =>{
 
     try {
         let contactToEdit = await Contact.findById(id);
+<<<<<<< HEAD
         res.render('contact/edit', {title: 'Edit contact', survey: contactToEdit});
+=======
+        res.render('contact/edit', {title: 'Edit contact', contact: contactToEdit});
+>>>>>>> f8849ecf643a0012d6e3d3d3d79f5912298c8a44
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
