@@ -1,0 +1,49 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+  
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="row">
+        <div class="offset-md-1 col-md-11">
+            <h1><%= title %></h1>
+            <a href="/contact-list/add" class="btn btn-primary" role="button">
+            <i class="fas fa-plus-circle"></i> Add a contact</a>
+            <br>
+            <table class="table table-bordered table-striped table-hover">
+                <!-- Header Row -->
+                <tr class="d-flex">
+                    <th class="text-center col-3">Full name</th>
+                    <th class="text-center col-3">Phone Number</th>
+                    <th class="text-center col-4">Message</th>
+                    <th class="col-1">Rating</th>
+                    <th class="col-1"></th>
+                    <th class="col-1"></th>
+
+                </tr>
+                <!-- Repeatable Template Row -->
+                <% for(let count = 0; count < ContactList.length; count++) { %>
+                    <tr class="d-flex">
+                        <td class="text-center col-3"><%= ContactList[count].fullName %></td>
+                        <td class="text-center col-3"><%= ContactList[count].phoneNumber %></td>
+                        <td class="text-center col-4"><%= ContactList[count].message %></td>
+                        <td class="col-1"><%= ContactList[count].rating %></td>
+                        <td class="text-center col-1">
+                            <a href="/contact-list/edit/<%= ContactList[count]._id %>" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i> Edit</a>
+                        </td>
+                        <td class="text-center col-1">
+                            <a href="/contact-list/delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i> Delete</a>
+                        </td>
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+    </div>
+  </main>
+  
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>

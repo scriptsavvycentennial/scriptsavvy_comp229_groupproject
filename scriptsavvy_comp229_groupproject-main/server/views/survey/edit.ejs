@@ -1,0 +1,42 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<!-- Content for the Add Page -->
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1><%= title %></h1>
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="titleTextField">Survey Title</label>
+                    <input type="text" class="form-control"
+                    id="titleTextField"
+                    placeholder="Enter the Survey Title"
+                    name="title" 
+                    value="<%= survey.title %>" 
+                    required>
+                </div>
+
+                <div class="form-group">
+                    <label for="questionTextField">Question</label>
+                    <input type="text" class="form-control"
+                    id="questionTextField"
+                    placeholder="First Question"
+                    name="question" value="<%= survey.question %>" required>
+                </div>
+
+                <br>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-edit"></i> Submit</button>
+
+                    <a href="/survey-list" class="btn btn-warning">
+                        <i class="fas fa-undo"></i> Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>
