@@ -33,25 +33,35 @@ Date: 2023-07-23
                     name="title" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="questionTextField">Question</label>
-                    <input type="text" class="form-control"
-                    id="questionTextField"
-                    placeholder="First Question"
-                    name="question" required>
+                <div id="questionsContainer">
+                    <!-- questions will be added here -->
                 </div>
 
-                <br>
-                <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-edit"></i> Submit</button>
-
-                    <a href="/survey-list" class="btn btn-warning">
-                        <i class="fas fa-undo"></i> Cancel</a>
+                <button type="button" onclick="addQuestion()">Add Question</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-edit"></i>Create Survey</button>
+                <a href="/survey-list" class="btn btn-warning">
+                    <i class="fas fa-undo"></i> Cancel</a>
             </form>
+            
         </div>
     </div>
 </div>
+<script>
+    function addQuestion(){
+        const container = document.getElementById("questionsContainer");
 
+        const questionDiv = document.createElement("div");
+        questionDiv.innerHTML = `
+        <label for="question">Question:</label>
+        <input type="text" name="questions[]" required> <br>
+        <label for="choices">Choices (comma-separated):</label>
+        <input type="text" name="choices[]" required> <br>
+        `;
+
+        container.appendChild(questionDiv);
+    }
+</script>
 <%- include ../partials/bottom_nav.ejs %>  
 
 <%- include ../partials/footer.ejs %>

@@ -18,9 +18,15 @@ Date: 2023-07-23
 let mongoose = require('mongoose');
 
 //create a model class
-let surveyModel = mongoose.Schema({
+let surveyModel = mongoose.Schema(
+	{
     title: String,
-    question: String
+	questions: [
+		{
+			questions: String,
+			choices: [String]
+		}
+	]
 },
 {
     collection: 'survey'

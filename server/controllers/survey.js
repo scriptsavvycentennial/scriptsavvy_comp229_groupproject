@@ -41,20 +41,37 @@ module.exports.displayAddPage = async (req, res, next) =>{
     }
 };
 
-module.exports.processAddPage = async (req, res, next) =>{
-    let newSurvey = new Survey({
-        "title": req.body.title,
-        "question": req.body.question
-    });
-
-    try{
-        await newSurvey.save();
-        res.redirect('/survey-list');
+module.exports.processAddPage = async (req, res, next) => {
+    try {
+      let { title, questions, choices } = req.body;
+  
+      // Split questions and choices into arrays
+      if (questions !== null) {
+        questions = questions.split(',');
+        choices = choices.split(',');
+      } else {
+        questions = [];
+        choices = [];
+      }
+  
+      // Create an array of objects to store questions and their respective choices
+      const questionArray = questions.map((question, index) => ({
+        question,
+        choices: choices.slice(index * 3, (index + 1) * 3), // Assuming each question has up to 3 choices
+      }));
+  
+      let newSurvey = new Survey({
+        title,
+        questions: questionArray,
+      });
+  
+      await newSurvey.save();
+      res.redirect('/survey-list');
     } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
+      console.log(err);
+      res.status(500).send(err);
     }
-};
+  };
 
 module.exports.displayEditPage = async (req, res, next) =>{
     let id = req.params.id;
@@ -70,15 +87,20 @@ module.exports.displayEditPage = async (req, res, next) =>{
 
 module.exports.processEditPage = async (req, res, next) =>{
     let id = req.params.id;
-    let updatedSurvey = {
-        "title": req.body.title,
-        "question": req.body.question
-    };
+    let {title, questions, choices} = req.body;
 
-    try {
-        await Survey.updateOne({_id: id}, updatedSurvey);
+    questions = questions.split(',');
+    choices = choices.split(',');
+
+    const questionArray = questions.map((question, index) => ({question,
+    choices: choices.slice(index * 3, (index + 1) * 3),
+}));
+    let updatedSurvey = {title, question: questionArray};
+
+    try{
+        await Survey.updateOne({ _id:id}, updatedSurvey);
         res.redirect('/survey-list');
-    } catch (err) {
+    }   catch(err){
         console.log(err);
         res.status(500).send(err);
     }
@@ -91,7 +113,7 @@ module.exports.performDelete = async (req, res, next) =>{
         await Survey.findByIdAndRemove(id);
         res.redirect('/survey-list');
     } catch (err) {
-        onsole.log(err);
+        console.log(err);
         res.status(500).send(err);
     }
 };
