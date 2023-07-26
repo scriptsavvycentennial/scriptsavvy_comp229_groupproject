@@ -14,3 +14,15 @@ Assignment: Group Project
 File: app.css
 Date: 2023-07-23
 */
+
+.question-form{
+    border: solid 1px rgb(185, 184, 184);
+    border-radius: 1rem;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    
+}
+
+.btn-addquestion{
+    margin-top: 1rem;
+}
