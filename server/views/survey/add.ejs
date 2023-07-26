@@ -26,9 +26,9 @@ Date: 2023-07-23
             <h1><%= title %></h1>
             <form class="form" method="POST">
                 <div class="form-group">
-                    <label for="titleTextField">Survey Title</label>
+                    <label for="title">Survey Title</label>
                     <input type="text" class="form-control"
-                    id="titleTextField"
+                    id="title"
                     placeholder="Enter the Survey Title"
                     name="title" required>
                 </div>
@@ -57,10 +57,10 @@ Date: 2023-07-23
         questionDiv.innerHTML = `
         <div class="form-group">
         <br>
-        <label for="question">Question:</label>
-        <input type="text" class="form-control name="question[]" id="question" required>
+        <label for="questions">Question:</label>
+        <input type="text" class="form-control name="questions" id="questions" required>
         <label for="choices">Choices (comma-separated):</label>
-        <input type="text" class="form-control name="choices[]" required> <br>
+        <input type="text" class="form-control name="choices" id="choices" required> <br>
         </div>`;
 
         container.appendChild(questionDiv);

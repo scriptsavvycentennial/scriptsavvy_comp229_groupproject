@@ -15,9 +15,6 @@ File: index.js
 Date: 2023-07-23
 */
 
-var express = require('express');
-var router = express.Router();
-
 module.exports.displayHomePage = (req, res, next) => {
     res.render('index', { title: 'ScriptSavvy Homepage' });
 };

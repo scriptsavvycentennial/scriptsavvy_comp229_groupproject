@@ -17,10 +17,7 @@ Date: 2023-07-23
 
 let express = require('express');
 let router = express.Router();
-let mongoose = require('mongoose');
 
-// connect to our Survey Model
-let Survey = require('../models/survey');
 
 let surveyController = require('../controllers/survey')
 

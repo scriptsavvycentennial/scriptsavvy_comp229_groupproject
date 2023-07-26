@@ -16,9 +16,6 @@ Date: 2023-07-23
 */
 
 //experimental branch
-let express = require('express');
-let router = express.Router();
-let mongoose = require('mongoose');
 
 // create a reference to the model
 let Survey = require('../models/survey');
@@ -42,23 +39,24 @@ module.exports.displayAddPage = async (req, res, next) =>{
     }
 };
 
+//This function needs to be improved on
 module.exports.processAddPage = async (req, res, next) => {
     try {
       let { title, questions, choices } = req.body;
   
-      // Split questions and choices into arrays
-      if (questions !== null) {
-        questions = questions.split(',');
-        choices = choices.split(',');
-      } else {
-        questions = [];
-        choices = [];
+      // Check if questions and choices are provided and not empty
+      if (!questions || !choices) {
+        return res.status(400).send("Questions and choices are required.");
       }
+  
+      // Split questions and choices into arrays
+      questions = questions.split(',');
+      choices = choices.split(',');
   
       // Create an array of objects to store questions and their respective choices
       const questionArray = questions.map((question, index) => ({
         question,
-        choices: choices.slice(index * 3, (index + 1) * 3), // Assuming each question has up to 3 choices
+        choices: choices.slice(index * 3, (index + 1) * 3),
       }));
   
       let newSurvey = new Survey({
@@ -69,8 +67,8 @@ module.exports.processAddPage = async (req, res, next) => {
       await newSurvey.save();
       res.redirect('/survey-list');
     } catch (err) {
-      console.log(err);
-      res.status(500).send(err);
+      console.error(err);
+      res.status(500).send("Internal server error.");
     }
   };
 
