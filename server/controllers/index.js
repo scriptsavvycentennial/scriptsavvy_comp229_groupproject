@@ -56,7 +56,7 @@ module.exports.displayLoginPage = function(req, res, next) {
     }
     else
     {
-        return res.redirect('/');
+        return res.redirect('/survey-list');
     }
 };
 
@@ -80,7 +80,7 @@ module.exports.processLoginPage = (req, res, next) => {
             {
                 return next(err);
             }
-            return res.redirect('/');
+            return res.redirect('/survey-list');
         });
     })(req, res, next);
 };
@@ -157,9 +157,9 @@ module.exports.processRegisterPage = async (req, res, next) => {
                 }
                 else
                 {
-                    // if registration is successful redirect user to Home Page
+                    // if registration is successful redirect user to Survey List
                     return passport.authenticate('local')(req, res, () => {
-                        res.redirect('/')
+                        res.redirect('/survey-list')
                     });
                 }
             });
