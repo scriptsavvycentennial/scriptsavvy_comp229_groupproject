@@ -8,8 +8,8 @@ Group Members
 	Tahnee Pitter-Duncan 		- 300844090 - tpitterd@my.centennialcollege.ca 	- UI Programmer
 
 
-Curse Name: Web Application Development
-Curse Code:COMP229
+Course Name: Web Application Development
+Course Code:COMP229
 Assignment: Group Project
 File: app.js
 Date: 2023-07-23
@@ -73,7 +73,16 @@ app.use(flash());
 //initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+//passport user configuration
+//create a user model instance
+let userModel = require('../models/user');
+let User = userModel.User;
 
+//implement User authentication strategy
+passport.use(User.createStrategy());
+
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user,seserializerUser()); 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/survey-list', surveysRouter);
