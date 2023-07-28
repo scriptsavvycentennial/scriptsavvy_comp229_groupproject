@@ -26,19 +26,19 @@ let userModel = require('../models/user');
 let User = userModel.User; 
 
 module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', { title: 'ScriptSavvy Homepage', displayName: req.user ? req.user.displaName : ''  });
+    res.render('index', { title: 'ScriptSavvy Homepage', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : ''  });
 };
 
 module.exports.displayAboutPage = (req, res, next) => {
-    res.render('index', { title: 'About Us', displayName: req.user ? req.user.displaName : '' });
+    res.render('index', { title: 'About Us', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
 };
 
 module.exports.displayContactList = (req, res, next) => {
-    res.render('contact/list', { title: 'Contact Us', displayName: req.user ? req.user.displaName : '' });
+    res.render('contact/list', { title: 'Contact Us', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
 };
 
 module.exports.displaySurveyList = (req, res, next) => {
-    res.render('survey/list', { title: 'Survey list page', displayName: req.user ? req.user.displaName : '' });
+    res.render('survey/list', { title: 'Survey list page', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
 };
 
 //Module Login Page
@@ -52,6 +52,7 @@ module.exports.displayLoginPage = function(req, res, next) {
             title: "Login",
             messages: req.flash('loginMessage'),
             displayName: req.user ? req.user.displaName : ''
+            ,isAuthenticated: req.isAuthenticated()
         });
     }
     else
@@ -96,6 +97,7 @@ module.exports.displayRegisterPage = (req, res, next) => {
             title: "Register",
             messages: req.flash('registerMessage'),
             displayName: req.user ? req.user.displaName : ''
+            ,isAuthenticated: req.isAuthenticated()
         });
     }
     else

@@ -30,7 +30,8 @@ module.exports.displaySurveyList = async (req, res, next) => {
         res.render('survey/list', {
             title: 'Surveys', 
             SurveyList: surveyList,
-            displayName: req.user ? req.user.displayName : '' })
+            displayName: req.user ? req.user.displayName : '' 
+            ,isAuthenticated: req.isAuthenticated()})
     } catch (err) {
         console.error(err);
     }
@@ -40,7 +41,8 @@ module.exports.displayAddPage = async (req, res, next) =>{
     try {
         res.render('survey/add', {
             title: 'Create a new Survey',
-            displayName: req.user ? req.user.displayName : '' })
+            displayName: req.user ? req.user.displayName : '' 
+            ,isAuthenticated: req.isAuthenticated()})
     } catch (err) {
         console.error(err);
     }
@@ -69,7 +71,8 @@ module.exports.displayEditPage = async (req, res, next) =>{
         res.render('survey/edit', {
             title: 'Edit Survey', 
             survey: surveyToEdit,
-            displayName: req.user ? req.user.displayName : '' });
+            displayName: req.user ? req.user.displayName : '' 
+            ,isAuthenticated: req.isAuthenticated()});
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
