@@ -26,7 +26,7 @@ let session = require("express-session")
 let passport = require ('passport')
 let passportLocal = require('passport-local')
 let localStrategy =passportLocal.Strategy;
-let flash = requie('connect-flash');
+let flash = require('connect-flash');
 
 // database setup
 let mongoose = require('mongoose');
