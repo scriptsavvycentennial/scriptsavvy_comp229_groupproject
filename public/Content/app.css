@@ -8,8 +8,8 @@ Group Members
 	Tahnee Pitter-Duncan 		- 300844090 - tpitterd@my.centennialcollege.ca 	- UI Programmer
 
 
-Course Name: Web Application Development
-Course Code:COMP229
+Curse Name: Web Application Development
+Curse Code:COMP229
 Assignment: Group Project
 File: app.css
 Date: 2023-07-23
@@ -20,9 +20,20 @@ Date: 2023-07-23
     border-radius: 1rem;
     padding: 1rem;
     padding-top: 0.5rem;
-    
 }
 
 .btn-addquestion{
     margin-top: 1rem;
+}
+
+.divForm{
+    border: solid 1px rgb(185, 184, 184);
+    border-radius: 1rem;
+    padding: 1rem;
+    padding-top: 0.5rem;
+	text-align: left;
+}
+
+.authPages{
+	text-align: center;
 }

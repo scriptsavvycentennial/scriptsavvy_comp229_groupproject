@@ -34,7 +34,24 @@ router.get('/about', indexController.displayAboutPage);
 /* GET contact us page. */
 router.get('/contact-list', contactController.displayContactList);
 
-/* GET contact us page. */
+/* GET contact Survey Page. */
 router.get('/survey-list', surveyController.displaySurveyList);
+
+//Auth Routes
+
+/* GET Route for displaying LogIn page. */
+router.get('/login', indexController.displayLoginPage);
+
+/* Post Route for processing LogIn page. */
+router.post('/login', indexController.processLoginPage);
+
+/* GET Route for displaying Register page */
+router.get('/register', indexController.displayRegisterPage);
+
+/* Post Route for processing Register page. */
+router.post('/register', indexController.processRegisterPage);
+
+/* GET Route for performing UserLogout */
+router.get('/logout', indexController.performLogout);
 
 module.exports = router;

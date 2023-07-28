@@ -19,27 +19,39 @@ let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 
+let passport = require('passport')
+
 // connect to our Survey Model
 let Survey = require('../models/survey');
 
 let surveyController = require('../controllers/survey')
 
+function requireAuth(req, res, next)
+{
+    //check is the user is LoggedIn
+    if(!req.isAuthenticated())
+    {
+        return res.redirect('/login');
+    }
+    next();
+}
+
 // Get Route for the Survey List page - READ Operation
 router.get('/', surveyController.displaySurveyList);
 
 // Get Route for displaying the Add page - CREATE Operation
-router.get('/add', surveyController.displayAddPage);
+router.get('/add', requireAuth, surveyController.displayAddPage);
 
 // Post Route for processing the Add Page - CREATE Operation
-router.post('/add', surveyController.processAddPage);
+router.post('/add', requireAuth, surveyController.processAddPage);
 
 // Get Route for displaying the Edit Page - UPDATE Operation
-router.get('/edit/:id', surveyController.displayEditPage);
+router.get('/edit/:id', requireAuth, surveyController.displayEditPage);
 
 // Post Route for processing the Edit Page - UPDATE Operation
-router.post('/edit/:id', surveyController.processEditPage);
+router.post('/edit/:id', requireAuth, surveyController.processEditPage);
 
 // Get to perform Deletion - DElETE Operation
-router.get('/delete/:id', surveyController.performDelete);
+router.get('/delete/:id', requireAuth, surveyController.performDelete);
 
 module.exports = router;
