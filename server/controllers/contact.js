@@ -28,7 +28,7 @@ module.exports.displayContactList = async (req, res, next) => {
         let contactList = await Contact.find();
         // console.log(contactList)
 
-        res.render('contact/list', {title: 'Contact', ContactList: contactList ,isAuthenticated: req.isAuthenticated()})
+        res.render('contact/list', {title: 'Contact', ContactList: contactList ,isAuthenticated: req.isAuthenticated() , displayName: req.user ? req.user.displaName : ''})
     } catch (err) {
         console.error(err);
     }
@@ -36,7 +36,7 @@ module.exports.displayContactList = async (req, res, next) => {
 
 module.exports.displayAddPage = async (req, res, next) =>{
     try {
-        res.render('contact/add', {title: 'Add contact' ,isAuthenticated: req.isAuthenticated()})
+        res.render('contact/add', {title: 'Add contact' ,isAuthenticated: req.isAuthenticated() , displayName: req.user ? req.user.displaName : ''})
     } catch (err) {
         console.error(err);
     }
@@ -64,7 +64,7 @@ module.exports.displayEditPage = async (req, res, next) =>{
 
     try {
         let contactToEdit = await Contact.findById(id);
-        res.render('contact/edit', {title: 'Edit contact', contact: contactToEdit ,isAuthenticated: req.isAuthenticated()});
+        res.render('contact/edit', {title: 'Edit contact', contact: contactToEdit ,isAuthenticated: req.isAuthenticated() , displayName: req.user ? req.user.displaName : ''});
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
