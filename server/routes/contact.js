@@ -19,12 +19,12 @@ let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 
-// connect to our Survey Model
+// connect to our Contact Model
 let contact = require('../models/contact');
 
 let contactController = require('../controllers/contact')
 
-// Get Route for the Survey List page - READ Operation
+// Get Route for the Contact List page - READ Operation
 router.get('/', contactController.displayContactList);
 
 // Get Route for displaying the Add page - CREATE Operation

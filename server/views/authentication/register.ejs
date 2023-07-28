@@ -1,0 +1,58 @@
+<!--
+Group Members
+	Alberto Mcwhirter-Javier	- 301203948 - amcwhir1@my.centennialcollege.ca 	- Lead Software Engineer
+	Andre Henrique Moyses de Assis	- 301282773 - amoysesd@my.centennialcollege.ca 	- Project Manager
+	Gregory Wheeler	 - 301306049 - gwheele4@my.centennialcollege.ca	- Security Programmer
+	Noveen Mirza		- 301208653 - nmirza13@my.centennialcollege.ca	- Database Programmer
+	Samiul Alim Rafid	 - 301244377- srafid1@my.centennialcollege.ca	- Web Designer
+	Tahnee Pitter-Duncan 		- 300844090 - tpitterd@my.centennialcollege.ca 	- UI Programmer
+
+
+Curse Name: Web Application Development
+Curse Code:COMP229
+Assignment: Group Project
+File: index.ejs
+Date: 2023-07-23
+-->
+
+<%- include partials/header.ejs %>
+
+<%- include partials/main_nav.ejs %>
+
+<div class="container">
+    <form action="/register" method="POST" class="form">
+        <div class="form-group">
+            <label for="username">Username: </label>'
+            <input type="text" class="form-control"
+            id="username"
+            name="username"
+            required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password: </label>'
+            <input type="text" class="form-control"
+            id="password"
+            name="password"
+            required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email: </label>'
+            <input type="text" class="form-control"
+            id="email"
+            name="email"
+            required>
+        </div>
+        <div class="form-group">
+            <label for="dateOfBirth">Date of Birth: </label>'
+            <input type="date" class="form-control"
+            id="dateOfBirth"
+            name="dateOfBirth"
+            required>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+
+<%- include partials/bottom_nav.ejs %>  
+
+<%- include partials/footer.ejs %>
