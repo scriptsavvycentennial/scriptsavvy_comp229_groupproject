@@ -1,7 +1,7 @@
 let mongoose =require('mongoose');
 let passportLocalMongoose = require('passport-local-mongoose');
 
-let User =mongoose.SchemaType(
+let User =mongoose.Schema(
 
 {
 username:
@@ -20,12 +20,12 @@ email:
     required:'email is required'
 
 },
-username:
+displayName:
 {
     type: String,
     default:"",
     trim: true,
-    required:'username is required'
+    required:'displayname is required'
 
 },
 created:{

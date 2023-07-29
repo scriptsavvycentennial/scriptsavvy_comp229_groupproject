@@ -36,6 +36,7 @@ let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let surveysRouter = require('../routes/survey');
 let contactsRouter = require('../routes/contact');
+const { Session } = require('inspector');
 
 // point mongoose to the DB URI
 mongoose.connect(DB.URI);
@@ -81,8 +82,8 @@ let User = userModel.User;
 //implement User authentication strategy
 passport.use(User.createStrategy());
 
-passport.serializeUser(user.serializeUser());
-passport.deserializeUser(user,seserializerUser()); 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser()); 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/survey-list', surveysRouter);
