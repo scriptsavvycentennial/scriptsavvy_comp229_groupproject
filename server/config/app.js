@@ -88,6 +88,13 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/survey-list', surveysRouter);
 app.use('/contact-list', contactsRouter);
+app.use('/login', indexRouter);
+app.use('/register', indexRouter);
+
+indexRouter.use((req, res, next) => {
+  console.log(req.url);
+  next();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
