@@ -21,6 +21,9 @@ var router = express.Router();
 let indexController = require('../controllers/index')
 let surveyController = require('../controllers/survey')
 let contactController = require('../controllers/contact')
+let loginController = require('../controllers/login')
+
+
 
 /* GET home page. */
 router.get('/', indexController.displayHomePage);
@@ -38,19 +41,19 @@ router.get('/contact-list', contactController.displayContactList);
 router.get('/survey-list', surveyController.displaySurveyList);
 
 // Get Route for displaying the login page
-router.get('/login', indexController.displayLoginPage);
+router.get('/login', loginController.displayLoginPage);
 
 // Post Route for processing the login page
-router.post('/login', indexController.processLoginPage);
+router.post('/login', loginController.processLoginPage);
 
 // Get Route for displaying the register page
-router.get('/register', indexController.displayRegisterPage);
+router.get('/register', loginController.displayRegisterPage);
 
 // Post Route for processing the register page
-router.post('/register', indexController.processRegisterPage);
+router.post('/register', loginController.processRegisterPage);
 
 // Get route for performing UserLogout
-router.get('/logout', indexController.performLogout);
+router.get('/logout', loginController.performLogout);
 
 
 module.exports = router;
