@@ -20,16 +20,10 @@ let router = express.Router();
 let mongoose = require('mongoose');
 let passport = require('passport');
 
-<<<<<<< HEAD
 //Create the User Model instance
 let userModel = require('../models/user');
 // Alias
 let User = userModel.User; 
-=======
-//create the User model insatnce
-let userModel = require('../models/user');
-let User = userModel.User;
->>>>>>> ddb5781a0184b08c0324c4889167b2904f9a2e45
 
 module.exports.displayHomePage = (req, res, next) => {
     res.render('index', { title: 'ScriptSavvy Homepage', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : ''  });
@@ -44,7 +38,6 @@ module.exports.displayContactList = (req, res, next) => {
 };
 
 module.exports.displaySurveyList = (req, res, next) => {
-<<<<<<< HEAD
     res.render('survey/list', { title: 'Survey list page', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
 };
 
@@ -192,8 +185,3 @@ module.exports.performLogout = (req, res, next) =>{
         return res.redirect('/');
     });
 };
-=======
-    res.render('survey/list', { title: 'Survey list page' });
-};
-
->>>>>>> ddb5781a0184b08c0324c4889167b2904f9a2e45
