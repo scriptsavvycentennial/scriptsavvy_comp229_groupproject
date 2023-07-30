@@ -14,57 +14,28 @@ Assignment: Group Project
 File: index.js
 Date: 2023-07-23
 */
-
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 let passport = require('passport');
 
-<<<<<<< HEAD
-//Create the User Model instance
-let userModel = require('../models/user');
-// Alias
-let User = userModel.User; 
-=======
 //create the User model insatnce
 let userModel = require('../models/user');
 let User = userModel.User;
->>>>>>> ddb5781a0184b08c0324c4889167b2904f9a2e45
-
-module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', { title: 'ScriptSavvy Homepage', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : ''  });
-};
-
-module.exports.displayAboutPage = (req, res, next) => {
-    res.render('index', { title: 'About Us', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
-};
-
-module.exports.displayContactList = (req, res, next) => {
-    res.render('contact/list', { title: 'Contact Us', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
-};
-
-module.exports.displaySurveyList = (req, res, next) => {
-<<<<<<< HEAD
-    res.render('survey/list', { title: 'Survey list page', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
-};
-
-//Module Login Page
-
-module.exports.displayLoginPage = function(req, res, next) {
-    //Check if the user is already logged in
+module.exports.displayLoginPage = (req, res, next) => {
+    // check if the user is already logged in
     if(!req.user)
     {
         res.render('auth/login',
         {
             title: "Login",
             messages: req.flash('loginMessage'),
-            displayName: req.user ? req.user.displaName : ''
-            ,isAuthenticated: req.isAuthenticated()
+            displayName: req.user ? req.user.displayName : ''
         });
     }
     else
     {
-        return res.redirect('/survey-list');
+        return res.redirect('/');
     }
 };
 
@@ -88,12 +59,10 @@ module.exports.processLoginPage = (req, res, next) => {
             {
                 return next(err);
             }
-            return res.redirect('/survey-list');
+            return res.redirect('/');
         });
     })(req, res, next);
 };
-
-//Module Register Page
 
 module.exports.displayRegisterPage = (req, res, next) => {
     // check if the user is already logged in
@@ -103,8 +72,7 @@ module.exports.displayRegisterPage = (req, res, next) => {
         {
             title: "Register",
             messages: req.flash('registerMessage'),
-            displayName: req.user ? req.user.displaName : ''
-            ,isAuthenticated: req.isAuthenticated()
+            displayName: req.user ? req.user.displayName : ''
         });
     }
     else
@@ -132,7 +100,7 @@ module.exports.processRegisterPage = async (req, res, next) => {
             {
                 title: "Register",
                 messages: req.flash('registerMessage'),
-                displayName: req.user ? req.user.displaName : ''
+                displayName: req.user ? req.user.displayName : ''
             });
         }
         else 
@@ -161,14 +129,14 @@ module.exports.processRegisterPage = async (req, res, next) => {
                     {
                         title: "Register",
                         messages: req.flash('registerMessage'),
-                        displayName: req.user ? req.user.displaName : ''
+                        displayName: req.user ? req.user.displayName : ''
                     });
                 }
                 else
                 {
-                    // if registration is successful redirect user to Survey List
+                    // if registration is successful
                     return passport.authenticate('local')(req, res, () => {
-                        res.redirect('/survey-list')
+                        res.redirect('/')
                     });
                 }
             });
@@ -181,19 +149,14 @@ module.exports.processRegisterPage = async (req, res, next) => {
     }
 };
 
-//Module Logout
-
-module.exports.performLogout = (req, res, next) =>{
+module.exports.performLogout = (req, res, next) => {
     req.logout((err) => {
         if (err) {
+            //handle error here
             console.log(err);
             return next(err);
         }
         return res.redirect('/');
     });
-};
-=======
-    res.render('survey/list', { title: 'Survey list page' });
-};
+}
 
->>>>>>> ddb5781a0184b08c0324c4889167b2904f9a2e45

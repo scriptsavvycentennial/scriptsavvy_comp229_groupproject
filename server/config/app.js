@@ -21,11 +21,19 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
+<<<<<<< HEAD
 // modules for authentication
 let session = require('express-session')
 let passport = require('passport')
 let passportLocal = require('passport-local')
 let localStrategy = passportLocal.Strategy;
+=======
+//modules for authentication
+let session = require('express-session')
+let passport = require ('passport')
+let passportLocal = require('passport-local')
+let localStrategy =passportLocal.Strategy;
+>>>>>>> ddb5781a0184b08c0324c4889167b2904f9a2e45
 let flash = require('connect-flash');
 
 // database setup
@@ -36,6 +44,7 @@ let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let surveysRouter = require('../routes/survey');
 let contactsRouter = require('../routes/contact');
+const { Session } = require('inspector');
 
 // point mongoose to the DB URI
 mongoose.connect(DB.URI);
@@ -59,6 +68,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
+<<<<<<< HEAD
 app.use(session({
   secret: "SomeSecret",
   saveUninitialized: false,
@@ -86,10 +96,43 @@ passport.serializeUser(User.serializeUser());
 // Deserialize User
 passport.deserializeUser(User.deserializeUser());
 
+=======
+
+app.use(session({
+  secret: "watermelon",
+  saveUninitialized:false,
+  resave: false
+
+}));
+
+//initialize flash
+app.use(flash());
+
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+//passport user configuration
+//create a user model instance
+let userModel = require('../models/user');
+let User = userModel.User;
+
+//implement User authentication strategy
+passport.use(User.createStrategy());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser()); 
+>>>>>>> ddb5781a0184b08c0324c4889167b2904f9a2e45
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/survey-list', surveysRouter);
 app.use('/contact-list', contactsRouter);
+app.use('/login', indexRouter);
+app.use('/register', indexRouter);
+
+indexRouter.use((req, res, next) => {
+  console.log(req.url);
+  next();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
