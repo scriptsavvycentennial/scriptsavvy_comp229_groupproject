@@ -8,8 +8,8 @@ Group Members
 	Tahnee Pitter-Duncan 		- 300844090 - tpitterd@my.centennialcollege.ca 	- UI Programmer
 
 
-Curse Name: Web Application Development
-Curse Code:COMP229
+Course Name: Web Application Development
+Course Code:COMP229
 Assignment: Group Project
 File: survey.js
 Date: 2023-07-23
@@ -27,7 +27,11 @@ module.exports.displaySurveyList = async (req, res, next) => {
         let surveyList = await Survey.find();
         // console.log(surveyList)
 
-        res.render('survey/list', {title: 'Surveys', SurveyList: surveyList})
+        res.render('survey/list', {
+            title: 'Surveys', 
+            SurveyList: surveyList,
+            displayName: req.user ? req.user.displayName : '' 
+            ,isAuthenticated: req.isAuthenticated()})
     } catch (err) {
         console.error(err);
     }
@@ -35,7 +39,10 @@ module.exports.displaySurveyList = async (req, res, next) => {
 
 module.exports.displayAddPage = async (req, res, next) =>{
     try {
-        res.render('survey/add', {title: 'Create a new Survey'})
+        res.render('survey/add', {
+            title: 'Create a new Survey',
+            displayName: req.user ? req.user.displayName : '' 
+            ,isAuthenticated: req.isAuthenticated()})
     } catch (err) {
         console.error(err);
     }
@@ -61,7 +68,11 @@ module.exports.displayEditPage = async (req, res, next) =>{
 
     try {
         let surveyToEdit = await Survey.findById(id);
-        res.render('survey/edit', {title: 'Edit Survey', survey: surveyToEdit});
+        res.render('survey/edit', {
+            title: 'Edit Survey', 
+            survey: surveyToEdit,
+            displayName: req.user ? req.user.displayName : '' 
+            ,isAuthenticated: req.isAuthenticated()});
     } catch (err) {
         console.log(err);
         res.status(500).send(err);

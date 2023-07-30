@@ -8,8 +8,8 @@ Group Members
 	Tahnee Pitter-Duncan 		- 300844090 - tpitterd@my.centennialcollege.ca 	- UI Programmer
 
 
-Curse Name: Web Application Development
-Curse Code:COMP229
+Course Name: Web Application Development
+Course Code:COMP229
 Assignment: Group Project
 File: app.js
 Date: 2023-07-23
@@ -20,6 +20,13 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+
+// modules for authentication
+let session = require('express-session')
+let passport = require('passport')
+let passportLocal = require('passport-local')
+let localStrategy = passportLocal.Strategy;
+let flash = require('connect-flash');
 
 // database setup
 let mongoose = require('mongoose');
@@ -52,6 +59,33 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
+app.use(session({
+  secret: "SomeSecret",
+  saveUninitialized: false,
+  resave: false
+}));
+
+// initialize flash
+app.use(flash());
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// passport user configuration
+let userModel = require('../models/user');
+
+// create a User Model Instance
+let User = userModel.User;
+
+// implemente User Authentication Strategy
+passport.use(User.createStrategy());
+
+// Serialize User
+passport.serializeUser(User.serializeUser());
+// Deserialize User
+passport.deserializeUser(User.deserializeUser());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/survey-list', surveysRouter);
@@ -70,7 +104,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error', { title: 'Error'});
+  res.render('error', { title: 'Error' , isAuthenticated: req.isAuthenticated() , displayName: req.user ? req.user.displaName : ''});
 });
 
 module.exports = app;
