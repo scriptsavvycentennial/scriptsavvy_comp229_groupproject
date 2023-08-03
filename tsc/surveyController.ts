@@ -14,15 +14,8 @@ Assignment: Group Project
 File: survey.js
 Date: 2023-07-23
 */
-
-let express = require('express');
-let router = express.Router();
-let mongoose = require('mongoose');
-
-// create a reference to the model
-let Survey = require('../models/survey');
-
-module.exports.displaySurveyList = async (req, res, next) => {
+let Survey = surveyModel;
+module.exports.displaySurveyList = async (req: any, res: any) => {
     try {
         let surveyList = await Survey.find();
         // console.log(surveyList)
@@ -37,7 +30,7 @@ module.exports.displaySurveyList = async (req, res, next) => {
     }
 };
 
-module.exports.displayAddPage = async (req, res, next) =>{
+module.exports.displayAddPage = async (req: any, res: any) =>{
     try {
         res.render('survey/add', {
             title: 'Create a new Survey',
@@ -48,7 +41,7 @@ module.exports.displayAddPage = async (req, res, next) =>{
     }
 };
 
-module.exports.processAddPage = async (req, res, next) =>{
+module.exports.processAddPage = async (req: any, res: any) =>{
     let newSurvey = new Survey({
         "title": req.body.title,
         "question": req.body.question
@@ -63,7 +56,7 @@ module.exports.processAddPage = async (req, res, next) =>{
     }
 };
 
-module.exports.displayEditPage = async (req, res, next) =>{
+module.exports.displayEditPage = async (req: any, res: any) =>{
     let id = req.params.id;
 
     try {
@@ -79,7 +72,7 @@ module.exports.displayEditPage = async (req, res, next) =>{
     }
 };
 
-module.exports.processEditPage = async (req, res, next) =>{
+module.exports.processEditPage = async (req: any, res: any) =>{
     let id = req.params.id;
     let updatedSurvey = {
         "title": req.body.title,
@@ -95,14 +88,14 @@ module.exports.processEditPage = async (req, res, next) =>{
     }
 };
 
-module.exports.performDelete = async (req, res, next) =>{
+module.exports.performDelete = async (req: any, res: any) =>{
     let id = req.params.id;
 
     try {
         await Survey.findByIdAndRemove(id);
         res.redirect('/survey-list');
     } catch (err) {
-        onsole.log(err);
+        console.log(err);
         res.status(500).send(err);
     }
 };

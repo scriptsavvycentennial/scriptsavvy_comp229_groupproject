@@ -11,21 +11,16 @@ Group Members
 Course Name: Web Application Development
 Course Code:COMP229
 Assignment: Group Project
-File: dcontact.js
+File: users.js
 Date: 2023-07-23
 */
 
-let mongoose = require('mongoose');
+var express = require('express');
+var router = express.Router();
 
-//create a model class
-let contactModel = mongoose.Schema({
-    fullName: String,
-    phoneNumber: Number,
-    message: String,
-    rating: Number
-},
-{
-    collection: 'contactMessages'
+/* GET users listing. */
+router.get('/', function(res: any) {
+  res.send('respond with a resource');
 });
 
-module.exports = mongoose.model('Contact', contactModel);
+module.exports = router;

@@ -15,34 +15,30 @@ File: contact.js
 Date: 2023-07-23
 */
 
-
-let express = require('express');
-let router = express.Router();
-let mongoose = require('mongoose');
-
 // create a reference to the model
-let Contact = require('../models/contact');
+let Contact = require('../models/contactModel');
+import { Request, Response } from 'express';
 
-module.exports.displayContactList = async (req, res, next) => {
+module.exports.displayContactList = async (req: Request, res: Response) => {
     try {
         let contactList = await Contact.find();
         // console.log(contactList)
 
-        res.render('contact/list', {title: 'Contact', ContactList: contactList ,isAuthenticated: req.isAuthenticated() , displayName: req.user ? req.user.displaName : ''})
+        res.render('contact/list', {title: 'Contact', ContactList: contactList ,isAuthenticated: req.isAuthenticated() , displayName: req.user ? String: ''})
     } catch (err) {
         console.error(err);
     }
 };
 
-module.exports.displayAddPage = async (req, res, next) =>{
+module.exports.displayAddPage = async (req: Request, res: Response) =>{
     try {
-        res.render('contact/add', {title: 'Add contact' ,isAuthenticated: req.isAuthenticated() , displayName: req.user ? req.user.displaName : ''})
+        res.render('contact/add', {title: 'Add contact' ,isAuthenticated: req.isAuthenticated() , displayName: req.user ? String : ''})
     } catch (err) {
         console.error(err);
     }
 };
 
-module.exports.processAddPage = async (req, res, next) =>{
+module.exports.processAddPage = async (req: Request, res: Response) =>{
     let newContact = new Contact({
         "fullName": req.body.fullName,
         "phoneNumber": req.body.phoneNumber,
@@ -59,19 +55,19 @@ module.exports.processAddPage = async (req, res, next) =>{
     }
 };
 
-module.exports.displayEditPage = async (req, res, next) =>{
+module.exports.displayEditPage = async (req: Request, res: Response) =>{
     let id = req.params.id;
 
     try {
         let contactToEdit = await Contact.findById(id);
-        res.render('contact/edit', {title: 'Edit contact', contact: contactToEdit ,isAuthenticated: req.isAuthenticated() , displayName: req.user ? req.user.displaName : ''});
+        res.render('contact/edit', {title: 'Edit contact', contact: contactToEdit ,isAuthenticated: req.isAuthenticated() , displayName: req.user ? String: ''});
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
     }
 };
 
-module.exports.processEditPage = async (req, res, next) =>{
+module.exports.processEditPage = async (req: Request, res: Response) =>{
     let id = req.params.id;
     let updatedContact = {
         "fullName": req.body.fullName,
@@ -89,14 +85,14 @@ module.exports.processEditPage = async (req, res, next) =>{
     }
 };
 
-module.exports.performDelete = async (req, res, next) =>{
+module.exports.performDelete = async (req: Request, res: Response) =>{
     let id = req.params.id;
 
     try {
         await Contact.findByIdAndRemove(id);
         res.redirect('/contact-list');
     } catch (err) {
-        onsole.log(err);
+        console.log(err);
         res.status(500).send(err);
     }
 };

@@ -15,12 +15,9 @@ File: index.js
 Date: 2023-07-23
 */
 
-var express = require('express');
-var router = express.Router();
-
-let indexController = require('../controllers/index')
-let surveyController = require('../controllers/survey')
-let contactController = require('../controllers/contact')
+let indexController = require('../controllers/indexController')
+let surveyController = require('../controllers/surveyController')
+let contactController = require('../controllers/contactController')
 
 /* GET home page. */
 router.get('/', indexController.displayHomePage);

@@ -11,16 +11,11 @@ Group Members
 Course Name: Web Application Development
 Course Code:COMP229
 Assignment: Group Project
-File: users.js
+File: db.js
 Date: 2023-07-23
 */
 
-var express = require('express');
-var router = express.Router();
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-module.exports = router;
+module.exports =
+{
+    "URI": "mongodb+srv://admin:1234@cluster0.9cmasak.mongodb.net/?retryWrites=true&w=majority"
+}

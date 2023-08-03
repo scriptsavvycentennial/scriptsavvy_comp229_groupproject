@@ -15,8 +15,8 @@ Assignment: Group Project
 File: app.js
 Date: 2023-07-23
 */
-
 var express = require('express');
+var router = express.Router();
 let createError = require('http-errors');
 let path = require('path');
 let cookieParser = require('cookie-parser');
@@ -30,7 +30,7 @@ let passport = require('passport');
 let flash = require('connect-flash');
 // database setup
 let mongoose = require('mongoose');
-let DB = require('./db.js');
+let DB = require('./db.tsc');
 let indexRouter = require('../routes/indexRoutes');
 let usersRouter = require('../routes/usersRoutes');
 let surveysRouter = require('../routes/surveyRoutes');
@@ -59,23 +59,15 @@ app.use(session({
 }));
 // initialize flash
 app.use(flash());
-
-let userModel = require('../models/userModel');
-let User = userModel.User;
-
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
-
 // implemente User Authentication Strategy
 passport.use(User.createStrategy());
-
 // Serialize User
 passport.serializeUser(User.serializeUser());
-
 // Deserialize User
 passport.deserializeUser(User.deserializeUser());
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/survey-list', surveysRouter);
