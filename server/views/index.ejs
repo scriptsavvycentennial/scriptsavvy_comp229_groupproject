@@ -21,11 +21,23 @@ Date: 2023-07-23
   
 
   <!-- Main Content -->
-  <main class="container">
-    <div class="jumbotron">
-      <h1 class="display-4">Welcome to the <%= title %> page</h1>
-      
-    </div>
+  <main class="container-fluid">
+    
+      <div class="jumbotron">
+      <div class="row">
+  
+    <div class="half-image-container">
+      <img src="Images/bg-image1.jpg" alt="Background image" class="half-image">
+      <div class="speech-bubble">
+          <img src="path/to/speech-bubble.png" alt="Speech bubble" class="speech-bubble-img">
+          <div class="speech-title">Ultimate Survey Database</div>
+      </div>
+  </div>
+</div>
+    <div class="button-container">
+      <a href="/survey-list/add" class="create-survey-button"> Create a new Survey</a>
+  </div>
+</div>
   </main>
   
 <%- include partials/bottom_nav.ejs %>  

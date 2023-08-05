@@ -1,6 +1,6 @@
 <!-- Main Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-custom">
-    <a class="navbar-brand" href="/"><img src="/Images/ScriptSavvyLogo.png" alt="Logo-Image" width="65px" height="65px"> Site Survey - ScriptSavvy</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-custom navbar-custom-font ">
+    <a class="navbar-brand" href="/"><img src="/Images/ScriptSavvyLogo.png" alt="Logo-Image" width="95px"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,48 +13,44 @@
         <% } else  { %>
         <li class="nav-item">
         <% } %>
-          <a class="nav-link" href="/home"><i class="fas fa-lg fa-laptop-house"></i> Home </a>
+          <a class="nav-link" href="/home">HOME</a>
         </li>
-        
-        <% if (title == "Survey") { %>
+
+        <% if (title == "About") { %>
           <li class="nav-item active">
           <% } else  { %>
           <li class="nav-item">
           <% } %>
-            <a class="nav-link" href="/survey-list/add"><i class="fa-solid fa-circle-plus"></i> Create a new Survey </a>
+            <a class="nav-link" href="/about">ABOUT</a>
           </li>
+  
+        
+        
 
         <% if (title == "Survey List") { %>
           <li class="nav-item active">
           <% } else  { %>
           <li class="nav-item">
           <% } %>
-            <a class="nav-link" href="/survey-list"><i class="fa-solid fa-square-poll-horizontal"></i> Survey List </a>
+            <a class="nav-link" href="/survey-list">SURVEYS</a>
           </li>
 
-        <% if (title == "About") { %>
-        <li class="nav-item active">
-        <% } else  { %>
-        <li class="nav-item">
-        <% } %>
-          <a class="nav-link" href="/about"><i class="fas fa-info-circle"></i> About Us </a>
-        </li>
-
+       
         <% if (title == "Contact") { %>
         <li class="nav-item active">
         <% } else  { %>
         <li class="nav-item">
         <% } %>
-          <a class="nav-link" href="/contact-list"><i class="fas fa-mobile-alt"></i> Contact </a>
+          <a class="nav-link" href="/contact-list">CONTACT</a>
         </li>
 
         <% if (isAuthenticated == true) { %>
           <li class="navbar-text"><i class="fas fa-lg fa-user"></i>Welcome, <%= displayName  %></li>
           <li class="nav-item"><a href="/logout" class="nav-link">
-            <i class="fas fa-lg fa-sign-out-alt"></i> Logout</a></li>
+            LOG OUT</a></li>
         <% } else if(isAuthenticated == false){ %>
           <li class="nav-item"><a href="/login" class="nav-link">
-            <i class="fas fa-lg fa-sign-in-alt"></i> Login</a></li>
+            LOG IN</a></li>
         <% } %>
     </div>
   </nav>
