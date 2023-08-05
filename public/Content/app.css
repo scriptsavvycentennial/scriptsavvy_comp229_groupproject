@@ -14,6 +14,13 @@ Assignment: Group Project
 File: app.css
 Date: 2023-07-23
 */
+.bg-custom {
+    background-color: #59738D; /* Replace with your color */
+}
+
+body {
+    background-color: #FAF6F5; 
+}
 
 .question-form{
     border: solid 1px rgb(185, 184, 184);
