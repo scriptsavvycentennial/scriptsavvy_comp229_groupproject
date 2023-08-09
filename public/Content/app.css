@@ -42,12 +42,12 @@ Date: 2023-07-23
 .navbar {
     background-color: #59738D;
     font-family: 'Bebas Neue', sans-serif;
-    
+    letter-spacing: 1.7px;    
 }
 
 .nav-link {
     color: #FAF6F5;
-    margin-right: 10px;
+    margin-right: 17px;
     font-size: large;
 }
 
@@ -107,7 +107,7 @@ Date: 2023-07-23
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
 }
 
 .wrapper {
@@ -168,9 +168,11 @@ Date: 2023-07-23
 }
 
 .wrapper .btn {
+    font-size: 1.5em;
+    text-align: center;
     box-shadow: none;
     width: 100%;
-    height: 40px;
+    height: 60px;
     background-color: #59738D;
     color: #fff;
     border-radius: 25px;
