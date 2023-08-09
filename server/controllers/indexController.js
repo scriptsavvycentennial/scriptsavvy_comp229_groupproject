@@ -28,7 +28,7 @@ module.exports.displayHomePage = (req, res, next) => {
     res.render('index', { title: 'ScriptSavvy Homepage', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
 };
 module.exports.displayAboutPage = (req, res, next) => {
-    res.render('index', { title: 'About Us', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
+    res.render('about', { title: 'About Us', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
 };
 module.exports.displayContactList = (req, res, next) => {
     res.render('contact/list', { title: 'Contact Us', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
