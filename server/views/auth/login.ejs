@@ -28,9 +28,32 @@ Date: 2023-07-23
         </div>
     <% } %>
 
-    <div class="row">
+    <div class="wrapper">
+        <div class="logo">
+            <img src="/Images/ScriptSavvyLogo2.png" alt="Logo-Image">
+        </div>
+        <div class="text-center mt-4 name">
+            Log In
+        </div>
+        <form class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="userName" id="userName" placeholder="Username">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password" id="pwd" placeholder="Password">
+            </div>
+            <button class="btn">Login</button>
+        </form>
+        <div class="text-center fs-6">
+            Not registered? <a href="#">Sign up</a>
+        </div>
+    </div>
+
+    <!-- <div class="row">
         <div class="offset-md-4 col-md-4 authPages">
-            <h1>Please Login</h1>
+            <h1>Log In</h1>
             <form method="POST" autocomplete="off">
                 <div class="divForm">
                     <fieldset class="form-group">
@@ -58,7 +81,7 @@ Date: 2023-07-23
                 </fieldset>
             </form>
         </div>
-    </div>
+    </div> -->
 </main>
 
 <%- include ../partials/bottom_nav.ejs %>  
