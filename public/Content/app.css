@@ -101,7 +101,7 @@ Date: 2023-07-23
     background-color: #CCD2DD;
 }
 
-/* Log In Page */
+/* Log In & Register Page */
 /* Reseting */
 * {
     margin: 0;
@@ -113,7 +113,7 @@ Date: 2023-07-23
 .wrapper {
     max-width: 350px;
     min-height: 500px;
-    margin: 80px auto;
+    margin: 20px auto;
     padding: 40px 30px 30px 30px;
     background-color: #E7ECF4;
     border-radius: 15px;
