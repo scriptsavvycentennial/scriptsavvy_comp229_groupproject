@@ -61,8 +61,10 @@ Date: 2023-07-23
 }
 
 /* Index  */
-.body {
+body ,html{
     background-color: #FAF6F5;
+    margin: 0;
+    padding: 0;
 }
 .img-div {
     width: 100%;
@@ -79,7 +81,26 @@ Date: 2023-07-23
     margin: 0px;
     border-bottom: 6px solid #59738D;
 }
+/*about-us*/
+.aboutus-img{
+    width: 100%;
+    height: 40vh;
+    display: block;
 
+}
+.container-aboutus {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+    overflow-y: auto;
+}
+.aboutus-header{
+    font-family: 'Bebas Neue', sans-serif;
+    color: #59738D;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    text-align: center;
+}
 .jumbotron {
     margin-top: 75px;
     font-family: 'Bebas Neue', sans-serif;
@@ -103,12 +124,6 @@ Date: 2023-07-23
 
 /* Log In & Register Page */
 /* Reseting */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* font-family: 'Poppins', sans-serif; */
-}
 
 .wrapper {
     max-width: 350px;
@@ -195,16 +210,7 @@ Date: 2023-07-23
     color: #CCD2DD;
 }
 
-@media(max-width: 380px) {
-    .wrapper {
-        margin: 30px 20px;
-        padding: 40px 15px 15px 15px;
-    }
-}
-/*about-us*/
-.about-us{
-    background-image: url('/Images/aboutus-bg.png');
-    background-repeat: no-repeat;
-    background-size: contain;
 
-}
+
+
+
