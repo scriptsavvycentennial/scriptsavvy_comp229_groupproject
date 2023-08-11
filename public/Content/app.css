@@ -201,3 +201,10 @@ Date: 2023-07-23
         padding: 40px 15px 15px 15px;
     }
 }
+/*about-us*/
+.about-us{
+    background-image: url('/Images/aboutus-bg.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
