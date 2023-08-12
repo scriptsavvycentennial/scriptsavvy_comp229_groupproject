@@ -22,44 +22,36 @@ Date: 2023-07-23
 
   <!-- Main Content -->
   <main class="container">
-    <div class="row">
-        <div class="offset-md-1 col-md-11">
-            <h1><%= title %></h1>
-            <a href="/contact-list/add" class="btn btn-primary" role="button">
-            <i class="fas fa-plus-circle"></i> Add a contact</a>
-            <br>
-            <table class="table table-bordered table-striped table-hover">
-                <!-- Header Row -->
-                <tr class="d-flex">
-                    <th class="text-center col-3">Full name</th>
-                    <th class="text-center col-3">Phone Number</th>
-                    <th class="text-center col-4">Message</th>
-                    <th class="col-1">Rating</th>
-                    <th class="col-1"></th>
-                    <th class="col-1"></th>
-
-                </tr>
-                <!-- Repeatable Template Row -->
-                <% for(let count = 0; count < ContactList.length; count++) { %>
-                    <tr class="d-flex">
-                        <td class="text-center col-3"><%= ContactList[count].fullName %></td>
-                        <td class="text-center col-3"><%= ContactList[count].phoneNumber %></td>
-                        <td class="text-center col-4"><%= ContactList[count].message %></td>
-                        <td class="col-1"><%= ContactList[count].rating %></td>
-                        <td class="text-center col-1">
-                            <a href="/contact-list/edit/<%= ContactList[count]._id %>" class="btn btn-primary btn-sm">
-                            <i class="fas fa-pencil-alt"></i> Edit</a>
-                        </td>
-                        <td class="text-center col-1">
-                            <a href="/contact-list/delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i> Delete</a>
-                        </td>
-                    </tr>
-                <% } %>
-            </table>
+    <div class="jumbotron">
+        <h1><strong>Contact Me</strong></h1>
+      </div>
+    <form>
+        <div class="w3-panel w3-leftbar w3-sand w3-medium">
+            <div class="mb-3">
+                <label for="FormControlInput1" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="FormControlInput2" placeholder="John">
+                <label for="FormControlInput2" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="FormControlInput2" placeholder="Smith">
+            </div>
+            <div class="mb-3">
+                <label for="FormControlInput3" class="form-label">Contact Number</label>
+                <input type="number" class="form-control" id="FormControlInput1" placeholder="(647) 999 0000">
+            </div>
+            <div class="mb-3">
+                <label for="FormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="FormControlInput1" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+                <label for="FormControlTextarea1" class="form-label">Message</label>
+                <textarea class="form-control" id="FormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="form-buttons">
+                <input type="reset" class="formbutton cancelbutton" value="Reset">
+                <input type="submit" class="formbutton sendbutton" value="Submit">
+            </div>
         </div>
-    </div>
-  </main>
+    </form>
+</main>
   
 <%- include ../partials/bottom_nav.ejs %>  
 
