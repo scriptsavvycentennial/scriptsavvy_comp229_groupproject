@@ -15,18 +15,7 @@ File: survey.js
 Date: 2023-07-23
 */
 
-let express = require('express');
-let router = express.Router();
-let mongoose = require('mongoose');
-
-let passport = require('passport')
-
-// connect to our Survey Model
-let Survey = require('../models/survey');
-
-let surveyController = require('../controllers/survey')
-
-function requireAuth(req, res, next)
+function requireAuth(req: any, res: any, next: any)
 {
     //check is the user is LoggedIn
     if(!req.isAuthenticated())

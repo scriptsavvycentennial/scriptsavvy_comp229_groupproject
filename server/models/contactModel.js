@@ -12,11 +12,19 @@ Group Members
 Course Name: Web Application Development
 Course Code:COMP229
 Assignment: Group Project
-File: db.js
+File: dcontact.js
 Date: 2023-07-23
 */
-module.exports =
-    {
-        "URI": "mongodb+srv://admin:1234@cluster0.9cmasak.mongodb.net/?retryWrites=true&w=majority"
-    };
-//# sourceMappingURL=db.js.map
+//create a model class
+const mongoose = require("mongoose");
+
+let contactModel = mongoose.Schema({
+    fullName: String,
+    phoneNumber: Number,
+    message: String,
+    rating: Number
+}, {
+    collection: 'contactMessages'
+});
+module.exports = mongoose.model('Contact', contactModel);
+//# sourceMappingURL=contactModel.js.map

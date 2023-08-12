@@ -12,11 +12,15 @@ Group Members
 Course Name: Web Application Development
 Course Code:COMP229
 Assignment: Group Project
-File: db.js
+File: survey.js
 Date: 2023-07-23
 */
-module.exports =
-    {
-        "URI": "mongodb+srv://admin:1234@cluster0.9cmasak.mongodb.net/?retryWrites=true&w=majority"
-    };
-//# sourceMappingURL=db.js.map
+//create a model class
+let surveyModel = mongoose.Schema({
+    title: String,
+    question: String
+}, {
+    collection: 'survey'
+});
+module.exports = mongoose.model('Survey', surveyModel);
+//# sourceMappingURL=surveyModel.js.map

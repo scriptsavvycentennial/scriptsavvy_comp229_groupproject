@@ -15,14 +15,8 @@ File: contact.js
 Date: 2023-07-23
 */
 
-let express = require('express');
-let router = express.Router();
-let mongoose = require('mongoose');
-
 // connect to our Survey Model
-let contact = require('../models/contact');
-
-let contactController = require('../controllers/contact')
+let contact = require('../models/contactModel');
 
 // Get Route for the Survey List page - READ Operation
 router.get('/', contactController.displayContactList);

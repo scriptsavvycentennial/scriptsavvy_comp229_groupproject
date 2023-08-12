@@ -11,19 +11,11 @@ Group Members
 Course Name: Web Application Development
 Course Code:COMP229
 Assignment: Group Project
-File: survey.js
+File: db.js
 Date: 2023-07-23
 */
 
-let mongoose = require('mongoose');
-
-//create a model class
-let surveyModel = mongoose.Schema({
-    title: String,
-    question: String
-},
+module.exports =
 {
-    collection: 'survey'
-});
-
-module.exports = mongoose.model('Survey', surveyModel);
+    "URI": "mongodb+srv://admin:1234@cluster0.9cmasak.mongodb.net/?retryWrites=true&w=majority"
+}

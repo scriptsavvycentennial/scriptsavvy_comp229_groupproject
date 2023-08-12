@@ -15,15 +15,9 @@ File: index.js
 Date: 2023-07-23
 */
 
-var express = require('express');
-var router = express.Router();
-
-let indexController = require('../controllers/index')
-let surveyController = require('../controllers/survey')
-let contactController = require('../controllers/contact')
-let loginController = require('../controllers/login')
-
-
+let indexController = require('../controllers/indexController')
+let surveyController = require('../controllers/surveyController')
+let contactController = require('../controllers/contactController')
 
 /* GET home page. */
 router.get('/', indexController.displayHomePage);
@@ -40,7 +34,6 @@ router.get('/contact-list', contactController.displayContactList);
 /* GET contact Survey Page. */
 router.get('/survey-list', surveyController.displaySurveyList);
 
-<<<<<<< HEAD
 //Auth Routes
 
 /* GET Route for displaying LogIn page. */
@@ -57,22 +50,5 @@ router.post('/register', indexController.processRegisterPage);
 
 /* GET Route for performing UserLogout */
 router.get('/logout', indexController.performLogout);
-=======
-// Get Route for displaying the login page
-router.get('/login', loginController.displayLoginPage);
-
-// Post Route for processing the login page
-router.post('/login', loginController.processLoginPage);
-
-// Get Route for displaying the register page
-router.get('/register', loginController.displayRegisterPage);
-
-// Post Route for processing the register page
-router.post('/register', loginController.processRegisterPage);
-
-// Get route for performing UserLogout
-router.get('/logout', loginController.performLogout);
-
->>>>>>> ddb5781a0184b08c0324c4889167b2904f9a2e45
 
 module.exports = router;

@@ -15,42 +15,25 @@ File: index.js
 Date: 2023-07-23
 */
 
-let express = require('express');
-let router = express.Router();
-let mongoose = require('mongoose');
-let passport = require('passport');
-
-<<<<<<< HEAD
-//Create the User Model instance
-let userModel = require('../models/user');
-// Alias
-let User = userModel.User; 
-=======
-//create the User model insatnce
-let userModel = require('../models/user');
-let User = userModel.User;
->>>>>>> ddb5781a0184b08c0324c4889167b2904f9a2e45
-
-module.exports.displayHomePage = (req, res, next) => {
+module.exports.displayHomePage = (req: any, res: any) => {
     res.render('index', { title: 'ScriptSavvy Homepage', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : ''  });
 };
 
-module.exports.displayAboutPage = (req, res, next) => {
+module.exports.displayAboutPage = (req: any, res: any) => {
     res.render('index', { title: 'About Us', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
 };
 
-module.exports.displayContactList = (req, res, next) => {
+module.exports.displayContactList = (req: any, res: any) => {
     res.render('contact/list', { title: 'Contact Us', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
 };
 
-module.exports.displaySurveyList = (req, res, next) => {
-<<<<<<< HEAD
+module.exports.displaySurveyList = (req: any, res: any) => {
     res.render('survey/list', { title: 'Survey list page', isAuthenticated: req.isAuthenticated(), displayName: req.user ? req.user.displaName : '' });
 };
 
 //Module Login Page
 
-module.exports.displayLoginPage = function(req, res, next) {
+module.exports.displayLoginPage = function(req: any, res: any) {
     //Check if the user is already logged in
     if(!req.user)
     {
@@ -68,9 +51,9 @@ module.exports.displayLoginPage = function(req, res, next) {
     }
 };
 
-module.exports.processLoginPage = (req, res, next) => {
+module.exports.processLoginPage = (req: any, res: any, next: any) => {
     passport.authenticate('local',
-    (err, user, info) => {
+    (err: any, user: typeof User) => {
         //server err?
         if(err)
         {
@@ -82,7 +65,7 @@ module.exports.processLoginPage = (req, res, next) => {
             req.flash('loginMessage', 'Authentication Error');
             return res.redirect('/login');
         }
-        req.login(user, (err) => {
+        req.login(user, (err: any) => {
             //server err?
             if(err)
             {
@@ -95,7 +78,7 @@ module.exports.processLoginPage = (req, res, next) => {
 
 //Module Register Page
 
-module.exports.displayRegisterPage = (req, res, next) => {
+module.exports.displayRegisterPage = (req: any, res: any) => {
     // check if the user is already logged in
     if(!req.user)
     {
@@ -113,7 +96,7 @@ module.exports.displayRegisterPage = (req, res, next) => {
     }
 };
 
-module.exports.processRegisterPage = async (req, res, next) => {
+module.exports.processRegisterPage = async (req: any, res: any, next: any) => {
     try
     {
         const existingUser = await User.findOne(
@@ -144,7 +127,7 @@ module.exports.processRegisterPage = async (req, res, next) => {
                 displayName: req.body.displayName
             });
 
-            User.register(newUser, req.body.password, (err) => {
+            User.register(newUser, req.body.password, (err: any) => {
                 if(err)
                 {
                     console.log(err);
@@ -183,8 +166,8 @@ module.exports.processRegisterPage = async (req, res, next) => {
 
 //Module Logout
 
-module.exports.performLogout = (req, res, next) =>{
-    req.logout((err) => {
+module.exports.performLogout = (req: any, res: any, next: any) =>{
+    req.logout((err: any) => {
         if (err) {
             console.log(err);
             return next(err);
@@ -192,8 +175,3 @@ module.exports.performLogout = (req, res, next) =>{
         return res.redirect('/');
     });
 };
-=======
-    res.render('survey/list', { title: 'Survey list page' });
-};
-
->>>>>>> ddb5781a0184b08c0324c4889167b2904f9a2e45

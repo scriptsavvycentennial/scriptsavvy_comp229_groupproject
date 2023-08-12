@@ -15,8 +15,6 @@ File: dcontact.js
 Date: 2023-07-23
 */
 
-let mongoose = require('mongoose');
-
 //create a model class
 let contactModel = mongoose.Schema({
     fullName: String,

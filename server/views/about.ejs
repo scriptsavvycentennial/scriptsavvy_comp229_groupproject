@@ -1,4 +1,4 @@
-/* 
+<!--
 Group Members
 	Alberto Mcwhirter-Javier	- 301203948 - amcwhir1@my.centennialcollege.ca 	- Lead Software Engineer
 	Andre Henrique Moyses de Assis	- 301282773 - amoysesd@my.centennialcollege.ca 	- Project Manager
@@ -11,16 +11,24 @@ Group Members
 Course Name: Web Application Development
 Course Code:COMP229
 Assignment: Group Project
-File: users.js
+File: index.ejs
 Date: 2023-07-23
-*/
+-->
 
-var express = require('express');
-var router = express.Router();
+<%- include partials/header.ejs %>
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+<%- include partials/main_nav.ejs %>
 
-module.exports = router;
+<div>
+    <img>
+    <br>
+    <p></p>
+</div>
+
+<div>
+    <img>
+</div>
+
+<%- include partials/bottom_nav.ejs %>  
+
+<%- include partials/footer.ejs %>
