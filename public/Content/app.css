@@ -58,6 +58,8 @@ Date: 2023-07-23
     font-size: 0.5em;
     color:#FAF6F5;
     padding: 5px;
+    position: sticky;
+    bottom: 0;
 }
 
 /* Index  */
@@ -84,7 +86,7 @@ body ,html{
 /*about-us*/
 .aboutus-img{
     width: 100%;
-    height: 40vh;
+    height: 55vh;
     display: block;
 
 }
@@ -93,6 +95,7 @@ body ,html{
     padding-right: 0;
     max-width: 100%;
     overflow-y: auto;
+    padding-bottom: 100px; 
 }
 .aboutus-header{
     font-family: 'Bebas Neue', sans-serif;
@@ -100,6 +103,21 @@ body ,html{
     font-weight: bolder;
     letter-spacing: 2px;
     text-align: center;
+}
+.circle-image {
+    width: 100px;  /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    border-radius: 65%; /* Makes it a circle */
+    overflow: hidden;   /* Ensures the image doesn't spill out of the circle */
+    margin-top: -50px; /* Half the height to position it at the top middle */
+    border: 3px solid #fff; /* Optional: Adds a border around the circle */
+}
+.circle-image img {
+    width: 100%;
+    height: auto;
+}
+.card {
+    padding-top: 50px; /* Adjust based on the negative margin of .circle-image */
 }
 .jumbotron {
     margin-top: 75px;
