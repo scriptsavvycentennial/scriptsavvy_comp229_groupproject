@@ -24,17 +24,12 @@ Assignment: Group Project
 File: survey.js
 Date: 2023-07-23
 */
-
+let Survey = require('../models/surveyModel');
 module.exports.displaySurveyList = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let surveyList = yield Survey.find();
         // console.log(surveyList)
-        res.render('survey/list', {
-            title: 'Surveys',
-            SurveyList: surveyList,
-            displayName: req.user ? req.user.displayName : '',
-            isAuthenticated: req.isAuthenticated()
-        });
+        res.render('survey/list', { title: 'Surveys', SurveyList: surveyList });//, isAuthenticated: req.isAuthenticated() === All of these are meant to be after surveyList (paste the comma too)
     }
     catch (err) {
         console.error(err);
@@ -42,40 +37,45 @@ module.exports.displaySurveyList = (req, res, next) => __awaiter(void 0, void 0,
 });
 module.exports.displayAddPage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.render('survey/add', {
-            title: 'Create a new Survey',
-            displayName: req.user ? req.user.displayName : '',
-            isAuthenticated: req.isAuthenticated()
-        });
+        res.render('survey/add', { title: 'Create a new Survey'}); //, isAuthenticated: req.isAuthenticated() 
     }
     catch (err) {
         console.error(err);
     }
 });
+//This function needs to be improved on
 module.exports.processAddPage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    let newSurvey = new Survey({
-        "title": req.body.title,
-        "question": req.body.question
-    });
     try {
+        let { title, questions, choices } = req.body;
+        // Check if questions and choices are provided and not empty
+        if (!questions || !choices) {
+            return res.status(400).send("Questions and choices are required.");
+        }
+        // Split questions and choices into arrays
+        questions = questions.split(',');
+        choices = choices.split(',');
+        // Create an array of objects to store questions and their respective choices
+        const questionArray = questions.map((question, index) => ({
+            question,
+            choices: choices.slice(index * 3, (index + 1) * 3),
+        }));
+        let newSurvey = new Survey({
+            title,
+            questions: questionArray,
+        });
         yield newSurvey.save();
         res.redirect('/survey-list');
     }
     catch (err) {
-        console.log(err);
-        res.status(500).send(err);
+        console.error(err);
+        res.status(500).send("Internal server error.");
     }
 });
 module.exports.displayEditPage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let id = req.params.id;
     try {
         let surveyToEdit = yield Survey.findById(id);
-        res.render('survey/edit', {
-            title: 'Edit Survey',
-            survey: surveyToEdit,
-            displayName: req.user ? req.user.displayName : '',
-            isAuthenticated: req.isAuthenticated()
-        });
+        res.render('survey/edit', { title: 'Edit Survey', survey: surveyToEdit}); //, isAuthenticated: req.isAuthenticated() 
     }
     catch (err) {
         console.log(err);
@@ -84,10 +84,13 @@ module.exports.displayEditPage = (req, res, next) => __awaiter(void 0, void 0, v
 });
 module.exports.processEditPage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let id = req.params.id;
-    let updatedSurvey = {
-        "title": req.body.title,
-        "question": req.body.question
-    };
+    let { title, questions, choices } = req.body;
+    questions = questions.split(',');
+    choices = choices.split(',');
+    const questionArray = questions.map((question, index) => ({ question,
+        choices: choices.slice(index * 3, (index + 1) * 3),
+    }));
+    let updatedSurvey = { title, question: questionArray };
     try {
         yield Survey.updateOne({ _id: id }, updatedSurvey);
         res.redirect('/survey-list');

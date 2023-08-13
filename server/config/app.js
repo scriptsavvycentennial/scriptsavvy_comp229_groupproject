@@ -82,7 +82,7 @@ app.use('/survey-list', surveysRouter);
 app.use('/contact-list', contactsRouter);
 // catch 404 and forward to error handler
 app.use(function (next) {
-    next(createError(404));
+    createError(404);
 });
 // error handler
 app.use(function (err, req, res) {

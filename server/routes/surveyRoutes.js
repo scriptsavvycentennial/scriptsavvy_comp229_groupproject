@@ -30,14 +30,14 @@ function requireAuth(req, res, next) {
 // Get Route for the Survey List page - READ Operation
 router.get('/', surveyController.displaySurveyList);
 // Get Route for displaying the Add page - CREATE Operation
-router.get('/add', requireAuth, surveyController.displayAddPage);
+router.get('/add',  surveyController.displayAddPage); //requireAuth,  All of the requireAuth are meant to be before the 'surveycontroller', after the comma
 // Post Route for processing the Add Page - CREATE Operation
-router.post('/add', requireAuth, surveyController.processAddPage);
+router.post('/add',  surveyController.processAddPage); //requireAuth,
 // Get Route for displaying the Edit Page - UPDATE Operation
-router.get('/edit/:id', requireAuth, surveyController.displayEditPage);
+router.get('/edit/:id',  surveyController.displayEditPage); //requireAuth,
 // Post Route for processing the Edit Page - UPDATE Operation
-router.post('/edit/:id', requireAuth, surveyController.processEditPage);
+router.post('/edit/:id',  surveyController.processEditPage); //requireAuth,
 // Get to perform Deletion - DElETE Operation
-router.get('/delete/:id', requireAuth, surveyController.performDelete);
+router.get('/delete/:id',  surveyController.performDelete); //requireAuth,
 module.exports = router;
 //# sourceMappingURL=surveyRoutes.js.map

@@ -19,40 +19,109 @@ Date: 2023-07-23
 
 <%- include ../partials/main_nav.ejs %>
 
-<!-- Content for the Add Page -->
+<!-- Content for the Edit Page -->
 <div class="container">
     <div class="row">
-        <div class="offset-md-3 col-md-6">
-            <h1><%= title %></h1>
-            <form class="form" method="POST">
-                <div class="form-group">
-                    <label for="titleTextField">Survey Title</label>
-                    <input type="text" class="form-control"
-                    id="titleTextField"
-                    placeholder="Enter the Survey Title"
-                    name="title" 
-                    value="<%= survey.title %>" 
-                    required>
-                </div>
-
-                <div class="form-group">
-                    <label for="questionTextField">Question</label>
-                    <input type="text" class="form-control"
-                    id="questionTextField"
-                    placeholder="First Question"
-                    name="question" value="<%= survey.question %>" required>
-                </div>
-
-                <br>
-                <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-edit"></i> Submit</button>
-
-                    <a href="/survey-list" class="btn btn-warning">
-                        <i class="fas fa-undo"></i> Cancel</a>
-            </form>
-        </div>
+      <div class="offset-md-3 col-md-6">
+        <h1><%= title %></h1>
+        <form class="form" method="POST" action="/edit/<%= survey._id %>">
+          <div class="form-group">
+            <label for="titleTextField">Survey Title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="titleTextField"
+              placeholder="Enter the Survey Title"
+              name="title"
+              value="<%= survey.title %>"
+              required
+            >
+          </div>
+  
+          <div id="questionsContainer">
+            
+            <% for (let i = 0; i < survey.length; i++) { %>
+              <% const question = survey.question[i]; %>
+              <div class="form-group">
+                <label for="questionTextField">Question <%= i + 1 %></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="questionTextField"
+                  placeholder="Enter the Question"
+                  name="questions"
+                  value="<%= question.question %>"
+                  required
+                >
+              </div>
+              <div class="form-group">
+                <label for="choicesTextField">Choices <%= i + 1 %> (comma-separated)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="choicesTextField"
+                  placeholder="Choice 1, Choice 2, Choice 3"
+                  name="choices"
+                  value="<%= question.choices ? question.choices.join(', ') : '' %>"
+                  required
+                >
+              </div>
+            <% } %>
+          </div>
+  
+          <button class="btn btn-primary" type="button" onclick="addQuestionField()">
+            <i class="fas fa-plus-circle"></i> Add Question
+          </button>
+  
+          <br>
+          <br>
+  
+          <button class="btn btn-primary" type="submit">
+            <i class="fas fa-edit"></i> Submit
+          </button>
+  
+          <a href="/survey-list" class="btn btn-warning">
+            <i class="fas fa-undo"></i> Cancel
+          </a>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
+  
+  <script>
+    // Function to add a new question and choice field
+    function addQuestionField() {
+      const container = document.getElementById("questionsContainer");
+  
+      const questionDiv = document.createElement("div");
+      questionDiv.innerHTML = `
+        <div class="form-group">
+          <label for="questionTextField">Question</label>
+          <input
+            type="text"
+            class="form-control"
+            id="questionTextField"
+            placeholder="Enter the Question"
+            name="questions"
+            required
+          >
+        </div>
+        <div class="form-group">
+          <label for="choicesTextField">Choices (comma-separated)</label>
+          <input
+            type="text"
+            class="form-control"
+            id="choicesTextField"
+            placeholder="Choice 1, Choice 2, Choice 3"
+            name="choices"
+            required
+          >
+        </div>
+      `;
+  
+      container.appendChild(questionDiv);
+    }
+  </script>
 
 <%- include ../partials/bottom_nav.ejs %>  
 
