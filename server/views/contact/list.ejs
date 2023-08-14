@@ -20,37 +20,32 @@ Date: 2023-07-23
 <%- include ../partials/main_nav.ejs %>
   
 
-  <!-- Main Content -->
-  <main class="container">
-    <div class="jumbotron">
-        <h1><strong>Contact Us</strong></h1>
-      </div>
-    <form>
-        <div class="w3-panel w3-leftbar w3-sand w3-medium">
-            <div class="mb-3">
-                <label for="FormControlInput1" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="FormControlInput2" placeholder="John">
-                <label for="FormControlInput2" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="FormControlInput2" placeholder="Smith">
-            </div>
-            <div class="mb-3">
-                <label for="FormControlInput3" class="form-label">Contact Number</label>
-                <input type="number" class="form-control" id="FormControlInput1" placeholder="(647) 999 0000">
-            </div>
-            <div class="mb-3">
-                <label for="FormControlInput1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="FormControlInput1" placeholder="name@example.com">
-            </div>
-            <div class="mb-3">
-                <label for="FormControlTextarea1" class="form-label">Message</label>
-                <textarea class="form-control" id="FormControlTextarea1" rows="3"></textarea>
-            </div>
-            <div class="form-buttons">
-                <input type="reset" class="formbutton cancelbutton" value="Reset">
-                <input type="submit" class="formbutton sendbutton" value="Submit">
-            </div>
+<main class="container-contact">
+    <div class="row align-items-center">
+        <!-- Left Side: Contact Us -->
+        <div class="col-md-6 text-center">
+            <h2>Contact Us</h2>
         </div>
-    </form>
+
+        <!-- Right Side: Contact Form -->
+        <div class="col-md-6">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 </main>
   
 <%- include ../partials/bottom_nav.ejs %>  

@@ -83,6 +83,22 @@ body ,html{
     margin: 0px;
     border-bottom: 6px solid #59738D;
 }
+/*contact*/
+.container-contact {
+    background: url('/Images/contactUS-bg.png') center/cover no-repeat;
+    padding: 50px 50px 50px 50px;
+}
+
+h2 {
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);  /* Optional shadow for better visibility */
+}
+
+form .form-group label {
+    color: white;  /* Or any color that contrasts well with your background image */
+}
+
 /*about-us*/
 .aboutus-img{
     width: 100%;
