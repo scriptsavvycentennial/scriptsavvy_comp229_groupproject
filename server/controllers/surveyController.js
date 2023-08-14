@@ -24,17 +24,12 @@ Assignment: Group Project
 File: survey.js
 Date: 2023-07-23
 */
-
+let Survey = require('../models/surveyModel');
 module.exports.displaySurveyList = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let surveyList = yield Survey.find();
         // console.log(surveyList)
-        res.render('survey/list', {
-            title: 'Surveys',
-            SurveyList: surveyList,
-            displayName: req.user ? req.user.displayName : '',
-            isAuthenticated: req.isAuthenticated()
-        });
+        res.render('survey/list', { title: 'Surveys', SurveyList: surveyList });//, isAuthenticated: req.isAuthenticated() === All of these are meant to be after surveyList (paste the comma too)
     }
     catch (err) {
         console.error(err);
@@ -42,61 +37,81 @@ module.exports.displaySurveyList = (req, res, next) => __awaiter(void 0, void 0,
 });
 module.exports.displayAddPage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.render('survey/add', {
-            title: 'Create a new Survey',
-            displayName: req.user ? req.user.displayName : '',
-            isAuthenticated: req.isAuthenticated()
-        });
+        res.render('survey/add', { title: 'Create a new Survey'}); //, isAuthenticated: req.isAuthenticated() 
     }
     catch (err) {
         console.error(err);
     }
 });
-module.exports.processAddPage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    let newSurvey = new Survey({
-        "title": req.body.title,
-        "question": req.body.question
-    });
+//This function needs to be improved on
+module.exports.processAddPage = async (req, res, next) => {
     try {
-        yield newSurvey.save();
+        const { title } = req.body;
+        const questionKeys = Object.keys(req.body).filter(key => key.startsWith('questions_'));
+        const choiceKeys = Object.keys(req.body).filter(key => key.startsWith('choices_'));
+
+        // Check if at least one question and choice were provided
+        if (questionKeys.length === 0 || choiceKeys.length === 0) {
+            return res.status(400).send("At least one question and choice are required.");
+        }
+
+        const questionArray = questionKeys.map((questionKey, index) => ({
+            question: req.body[questionKey],
+            choices: req.body[choiceKeys[index]].split(',').map(choice => choice.trim()),
+        }));
+
+        const newSurvey = new Survey({
+            title,
+            questions: questionArray,
+        });
+
+        await newSurvey.save();
         res.redirect('/survey-list');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal server error.");
     }
-    catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-});
+};
+
 module.exports.displayEditPage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let id = req.params.id;
+    console.log('Hello?1');
     try {
         let surveyToEdit = yield Survey.findById(id);
-        res.render('survey/edit', {
-            title: 'Edit Survey',
-            survey: surveyToEdit,
-            displayName: req.user ? req.user.displayName : '',
-            isAuthenticated: req.isAuthenticated()
-        });
+        res.render('survey/edit', { title: 'Edit Survey', survey: surveyToEdit}); //, isAuthenticated: req.isAuthenticated() 
     }
     catch (err) {
         console.log(err);
         res.status(500).send(err);
     }
 });
-module.exports.processEditPage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    let id = req.params.id;
-    let updatedSurvey = {
-        "title": req.body.title,
-        "question": req.body.question
-    };
+module.exports.processEditPage = async (req, res, next) => {
     try {
-        yield Survey.updateOne({ _id: id }, updatedSurvey);
+        const id = req.params.id;
+        const { title, questions, choices } = req.body;
+
+        // Split questions and choices into arrays
+        const questionArray = questions.map((question, index) => ({
+            question,
+            choices: choices[index].split(',').map(choice => choice.trim()),
+        }));
+
+        const updatedSurvey = {
+            title,
+            questions: questionArray,
+        };
+
+        console.log('Hello?');
+        // Update the survey using the Survey model
+        await Survey.updateOne({ _id: id }, updatedSurvey);
+
         res.redirect('/survey-list');
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err);
-        res.status(500).send(err);
+        res.status(500).send("Internal server error.");
     }
-});
+};
+
 module.exports.performDelete = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let id = req.params.id;
     try {

@@ -18,7 +18,12 @@ Date: 2023-07-23
 //create a model class
 let surveyModel = mongoose.Schema({
     title: String,
-    question: String
+    questions: [
+        {
+            question: String,
+            choices: [String]
+        }
+    ]
 }, {
     collection: 'survey'
 });
