@@ -39,31 +39,33 @@ Date: 2023-07-23
 
                 <button class="btn btn-primary" type="button" onclick="addQuestion()">
                     <i class="fas fa-plus-circle"></i> Add Question
-                  </button>
+                </button>
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-edit"></i>Create Survey</button>
+                    <i class="fas fa-edit"></i> Create Survey</button>
                 <a href="/survey-list" class="btn btn-warning">
                     <i class="fas fa-undo"></i> Cancel</a>
             </form>
-            
         </div>
     </div>
 </div>
 <script>
-    function addQuestion(){
+    let questionCount = 0; // Counter for unique question input names
+
+    function addQuestion() {
         const container = document.getElementById("questionsContainer");
 
         const questionDiv = document.createElement("div");
         questionDiv.innerHTML = `
         <div class="form-group">
-        <br>
-        <label for="questions">Question:</label>
-        <input type="text" class="form-control name="questions" id="questions" required>
-        <label for="choices">Choices (comma-separated):</label>
-        <input type="text" class="form-control name="choices" id="choices" required> <br>
+            <br>
+            <label for="question_${questionCount}">Question:</label>
+            <input type="text" class="form-control" name="questions_${questionCount}" required>
+            <label for="choices_${questionCount}">Choices (comma-separated):</label>
+            <input type="text" class="form-control" name="choices_${questionCount}" required> <br>
         </div>`;
 
         container.appendChild(questionDiv);
+        questionCount++;
     }
 </script>
 <%- include ../partials/bottom_nav.ejs %>  
