@@ -9,42 +9,42 @@
       <ul class="navbar-nav ms-auto">
 
         <% if (title == "Home"){ %>
-        <li class="nav-item active">
-        <% } else  { %>
-        <li class="nav-item">
-        <% } %>
+          <li class="nav-item active">
+          <% } else  { %>
+          <li class="nav-item">
+          <% } %>
           <a class="nav-link" href="/home"> Home </a>
         </li>
         
         <% if (title == "Survey") { %>
-          <li class="nav-item active">
-          <% } else  { %>
-          <li class="nav-item">
-          <% } %>
+            <li class="nav-item active">
+            <% } else  { %>
+            <li class="nav-item">
+            <% } %>
             <a class="nav-link" href="/survey-list/add"> Create a new Survey </a>
           </li>
 
-        <% if (title == "Survey List") { %>
+        <% if (title == "Take a Survey") { %>
+            <li class="nav-item active">
+            <% } else  { %>
+            <li class="nav-item">
+            <% } %>
+            <a class="nav-link" href="/survey-list"> Take a survey </a>
+          </li>
+
+        <% if (title == "About") { %>
           <li class="nav-item active">
           <% } else  { %>
           <li class="nav-item">
           <% } %>
-            <a class="nav-link" href="/survey-list"> Survey List </a>
-          </li>
-
-        <% if (title == "About") { %>
-        <li class="nav-item active">
-        <% } else  { %>
-        <li class="nav-item">
-        <% } %>
           <a class="nav-link" href="/about"> About Us </a>
         </li>
 
         <% if (title == "Contact") { %>
-        <li class="nav-item active">
-        <% } else  { %>
-        <li class="nav-item">
-        <% } %>
+          <li class="nav-item active">
+          <% } else  { %>
+          <li class="nav-item">
+          <% } %>
           <a class="nav-link" href="/contact-list"> Contact </a>
         </li>
 

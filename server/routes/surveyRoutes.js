@@ -39,5 +39,10 @@ router.get('/edit/:id',  surveyController.displayEditPage); //requireAuth,
 router.post('/edit/:id',  surveyController.processEditPage); //requireAuth,
 // Get to perform Deletion - DElETE Operation
 router.get('/delete/:id',  surveyController.performDelete); //requireAuth,
+// Display individual form
+router.get('/take/:id', surveyController.displayForm);
+// Handle form submission
+router.post('/submit/:id', surveyController.submitForm);
+
 module.exports = router;
 //# sourceMappingURL=surveyRoutes.js.map
