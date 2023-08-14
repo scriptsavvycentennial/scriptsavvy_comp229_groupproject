@@ -16,7 +16,6 @@ Date: 2023-07-23
 -->
 
 <%- include ../partials/header.ejs %>
-
 <%- include ../partials/main_nav.ejs %>
   
   <!-- Main Content -->
@@ -32,8 +31,7 @@ Date: 2023-07-23
               <tr class="d-flex">
                   <th class="text-center col-4">Title</th>
                   <th class="text-center col-6">Question</th>
-                  <th class="text-center col-1"></th>
-                  <th class="text-center col-1"></th>
+                  <th class="text-center col-8">Options</th>
               </tr>
               <!-- Repeatable Template Row -->
               <% if (SurveyList && SurveyList.length > 0) { %>
@@ -53,6 +51,11 @@ Date: 2023-07-23
                               <a href="/survey-list/delete/<%= SurveyList[count]._id %>" class="btn btn-danger btn-sm">
                               <i class="fas fa-trash-alt"></i> Delete</a>
                           </td>
+                          <td class="text-center col-3">
+                            <a href="/survey-list/take/<%= SurveyList[count]._id %>" class="btn btn-primary btn-sm">
+                            <i class="fas fa-play-circle"></i> Take this survey</a>
+                        </td>
+                        
                       </tr>
                   <% } %>
               <% } else { %>
@@ -66,5 +69,4 @@ Date: 2023-07-23
   </main>
   
 <%- include ../partials/bottom_nav.ejs %>  
-
 <%- include ../partials/footer.ejs %>

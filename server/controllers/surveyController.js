@@ -1,13 +1,3 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 /*
 Group Members
     Alberto Mcwhirter-Javier	- 301203948 - amcwhir1@my.centennialcollege.ca 	- Lead Software Engineer
@@ -24,7 +14,20 @@ Assignment: Group Project
 File: survey.js
 Date: 2023-07-23
 */
+
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
 let Survey = require('../models/surveyModel');
+let userSurveyTakingModel = require('../models/userSurveyTakingModel');
 module.exports.displaySurveyList = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let surveyList = yield Survey.find();
@@ -43,7 +46,6 @@ module.exports.displayAddPage = (req, res, next) => __awaiter(void 0, void 0, vo
         console.error(err);
     }
 });
-//This function needs to be improved on
 module.exports.processAddPage = async (req, res, next) => {
     try {
         const { title } = req.body;
@@ -123,4 +125,50 @@ module.exports.performDelete = (req, res, next) => __awaiter(void 0, void 0, voi
         res.status(500).send(err);
     }
 });
+
+//Survey taking stuff
+exports.displayForm = async (req, res) => {
+    try {
+        const survey = await Survey.findById(req.params.id);
+        res.render('survey/take-form', { title: 'Take survey', survey });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal server error');
+    }
+};
+exports.submitForm = async (req, res) => {
+    try {
+        const surveyId = req.params.id; // Assuming you pass the survey ID in the URL
+        const answers = [];
+
+        // Extract answers from the request body
+        for (let i = 0; i < req.body.answers.length; i++) {
+            const answer = req.body[`answers_${i}`];
+            answers.push(answer);
+        }
+
+        const survey = await Survey.findById(surveyId);
+
+        if (!survey) {
+            return res.status(404).render('error', { message: 'Survey not found' });
+        }
+
+        const userSurveyTaking = new userSurveyTakingModel({
+            survey: surveyId,
+            user: "Name" ,//req.user._id, // Assuming you have authentication and a User model
+            answers: survey.questions.map((question, index) => ({
+                question: question.question,
+                answer: answers[index],
+            })),
+        });
+
+        await userSurveyTaking.save();
+
+        res.redirect('/survey-list'); // Redirect back to the survey list page
+    } catch (error) {
+        console.error(error);
+        res.status(500).render('error', { message: 'Internal server error' });
+    }
+};
+
 //# sourceMappingURL=surveyController.js.map
