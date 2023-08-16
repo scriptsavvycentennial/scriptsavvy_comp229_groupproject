@@ -78,15 +78,21 @@ Date: 2023-07-23
     }
     
     function addTextInputQuestion() {
-        const container = document.getElementById("questionsContainer");
-        const questionDiv = document.createElement("div");
-        questionDiv.innerHTML = `
-            <div class="form-group">
-                <label for="question_${questionCount}">Question:</label>
-                <input type="text" name="questions_${questionCount}" required>
-    <button onclick="deleteQuestion(${questionCount})">Delete</button><br>`;
+    const container = document.getElementById("questionsContainer");
+    const questionDiv = document.createElement("div");
+    questionDiv.innerHTML = `
+        <div class="form-group">
+            <label for="question_${questionCount}">Question:</label>
+            <input type="text" name="questions_${questionCount}" required>
+        </div>
+        <button onclick="deleteQuestion(${questionCount})">Delete</button><br>`;
+    
+    container.appendChild(questionDiv);
+    questionCount++;
+}
+
     </script>
-            </div>
+            
             
     </main>
 <%- include ../partials/bottom_nav.ejs %>  
