@@ -19,55 +19,76 @@ Date: 2023-07-23
 
 <%- include ../partials/main_nav.ejs %>
 
-<!-- Content for the Add Page -->
-<div class="container">
-    <div class="row">
-        <div class="offset-md-3 col-md-6">
-            <h1><%= title %></h1>
-            <form class="form" method="POST">
-                <div class="form-group">
-                    <label for="title">Survey Title</label>
-                    <input type="text" class="form-control"
-                    id="title"
-                    placeholder="Enter the Survey Title"
-                    name="title" required>
-                </div>
-
-                <div id="questionsContainer">
-                    <!-- questions will be added here -->
-                </div>
-
-                <button class="btn btn-primary" type="button" onclick="addQuestion()">
-                    <i class="fas fa-plus-circle"></i> Add Question
-                </button>
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-edit"></i> Create Survey</button>
-                <a href="/survey-list" class="btn btn-warning">
-                    <i class="fas fa-undo"></i> Cancel</a>
-            </form>
-        </div>
-    </div>
-</div>
-<script>
-    let questionCount = 0; // Counter for unique question input names
-
-    function addQuestion() {
-        const container = document.getElementById("questionsContainer");
-
-        const questionDiv = document.createElement("div");
-        questionDiv.innerHTML = `
-        <div class="form-group">
-            <br>
-            <label for="question_${questionCount}">Question:</label>
-            <input type="text" class="form-control" name="questions_${questionCount}" required>
-            <label for="choices_${questionCount}">Choices (comma-separated):</label>
-            <input type="text" class="form-control" name="choices_${questionCount}" required> <br>
-        </div>`;
-
-        container.appendChild(questionDiv);
-        questionCount++;
+<main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Survey Details</h2>
+                    <form class="form" method="POST">
+                        <div class="form-group">
+                            <label for="surveyName">Survey Name:</label>
+                            <input type="text" class="form-control" id="surveyName" placeholder="Enter survey name">
+                        </div>
+                        <div class="form-group">
+                            <label for="surveyPurpose">Survey Purpose:</label>
+                            <textarea class="form-control" id="surveyPurpose" placeholder="Enter survey purpose"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailAddress">Email Address:</label>
+                            <input type="email" class="form-control" id="emailAddress" placeholder="Enter email address">
+                        </div>
+                        <button class="btn btn-primary" onclick="createSurvey()">Create</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h2>Survey Questions</h2>
+                    <form class="form" method="POST">
+                        <div id="questionsContainer"></div>
+                        <button class="btn btn-secondary" onclick="addMultipleChoiceQuestion()">Add Multiple Choice Question</button>
+                        <button class="btn btn-secondary" onclick="addTextInputQuestion()">Add Text Input Question</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Create Survey</button>
+                        <a href="/survey-list" class="btn btn-warning">
+                            <i class="fas fa-undo"></i> Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            let questionCount = 0;
+    
+            
+            function addMultipleChoiceQuestion() {
+        const container = document.getElementById("questionsContainer");
+        const questionDiv = document.createElement("div");
+        questionDiv.innerHTML = `
+            <div class="form-group">
+                <label for="question_${questionCount}">Question:</label>
+                <input type="text" name="questions_${questionCount}" required>
+            </div>
+            <div class="form-group">
+                <label for="choices_${questionCount}">Choices (comma-separated):</label>
+                <input type="text" name="choices_${questionCount}" required>
+            </div>
+            <button onclick="deleteQuestion(${questionCount})">Delete</button><br>`;
+                
+        container.appendChild(questionDiv);
+        questionCount++;
     }
-</script>
+    
+    function addTextInputQuestion() {
+        const container = document.getElementById("questionsContainer");
+        const questionDiv = document.createElement("div");
+        questionDiv.innerHTML = `
+            <div class="form-group">
+                <label for="question_${questionCount}">Question:</label>
+                <input type="text" name="questions_${questionCount}" required>
+    <button onclick="deleteQuestion(${questionCount})">Delete</button><br>`;
+    </script>
+            </div>
+            
+    </main>
 <%- include ../partials/bottom_nav.ejs %>  
 
 <%- include ../partials/footer.ejs %>
