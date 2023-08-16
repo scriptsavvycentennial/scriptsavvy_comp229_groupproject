@@ -14,17 +14,14 @@ Assignment: Group Project
 File: survey.js
 Date: 2023-07-23
 */
-let Survey = surveyModel;
+let Survey = require('../models/survey');
+
 module.exports.displaySurveyList = async (req: any, res: any) => {
     try {
         let surveyList = await Survey.find();
         // console.log(surveyList)
 
-        res.render('survey/list', {
-            title: 'Surveys', 
-            SurveyList: surveyList,
-            displayName: req.user ? req.user.displayName : '' 
-            ,isAuthenticated: req.isAuthenticated()})
+        res.render('survey/list', {title: 'Surveys', SurveyList: surveyList}) //isAuthenticated: req.isAuthenticated() === All of these are meant to be after surveyList (paste the comma too)
     } catch (err) {
         console.error(err);
     }
@@ -32,40 +29,51 @@ module.exports.displaySurveyList = async (req: any, res: any) => {
 
 module.exports.displayAddPage = async (req: any, res: any) =>{
     try {
-        res.render('survey/add', {
-            title: 'Create a new Survey',
-            displayName: req.user ? req.user.displayName : '' 
-            ,isAuthenticated: req.isAuthenticated()})
+        res.render('survey/add', {title: 'Create a new Survey'}) //,isAuthenticated: req.isAuthenticated()
     } catch (err) {
         console.error(err);
     }
 };
 
-module.exports.processAddPage = async (req: any, res: any) =>{
-    let newSurvey = new Survey({
-        "title": req.body.title,
-        "question": req.body.question
-    });
-
-    try{
-        await newSurvey.save();
-        res.redirect('/survey-list');
+//This function needs to be improved on
+module.exports.processAddPage = async (req: any, res: any) => {
+    try {
+      let { title, questions, choices } = req.body;
+  
+      // Check if questions and choices are provided and not empty
+      if (!questions || !choices) {
+        return res.status(400).send("Questions and choices are required.");
+      }
+  
+      // Split questions and choices into arrays
+      questions = questions.split(',');
+      choices = choices.split(',');
+  
+      // Create an array of objects to store questions and their respective choices
+      const questionArray = questions.map((question: String, index: number) => ({
+        question,
+        choices: choices.slice(index * 3, (index + 1) * 3),
+      }));
+  
+      let newSurvey = new Survey({
+        title,
+        questions: questionArray,
+      });
+  
+      await newSurvey.save();
+      res.redirect('/survey-list');
     } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
+      console.error(err);
+      res.status(500).send("Internal server error.");
     }
-};
+  };
 
 module.exports.displayEditPage = async (req: any, res: any) =>{
     let id = req.params.id;
 
     try {
         let surveyToEdit = await Survey.findById(id);
-        res.render('survey/edit', {
-            title: 'Edit Survey', 
-            survey: surveyToEdit,
-            displayName: req.user ? req.user.displayName : '' 
-            ,isAuthenticated: req.isAuthenticated()});
+        res.render('survey/edit', {title: 'Edit Survey', survey: surveyToEdit}); //,isAuthenticated: req.isAuthenticated()
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -74,15 +82,20 @@ module.exports.displayEditPage = async (req: any, res: any) =>{
 
 module.exports.processEditPage = async (req: any, res: any) =>{
     let id = req.params.id;
-    let updatedSurvey = {
-        "title": req.body.title,
-        "question": req.body.question
-    };
+    let {title, questions, choices} = req.body;
 
-    try {
-        await Survey.updateOne({_id: id}, updatedSurvey);
+    questions = questions.split(',');
+    choices = choices.split(',');
+
+    const questionArray = questions.map((question: String, index: number) => ({question,
+    choices: choices.slice(index * 3, (index + 1) * 3),
+}));
+    let updatedSurvey = {title, question: questionArray};
+
+    try{
+        await Survey.updateOne({ _id:id}, updatedSurvey);
         res.redirect('/survey-list');
-    } catch (err) {
+    }   catch(err){
         console.log(err);
         res.status(500).send(err);
     }

@@ -15,18 +15,33 @@ Assignment: Group Project
 File: survey.js
 Date: 2023-07-23
 */
+
+
 //create a model class
-let mongoose = require('mongoose');
-let surveyModel = mongoose.Schema({
-    title: String,
-    questions: [
+// models/userSurveyTaking.js
+
+const mongoose = require('mongoose');
+const userSurveyTakingSchema = new mongoose.Schema({
+    survey: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Survey',
+        required: true,
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', // If you have a User model
+        required: true,
+    },
+    answers: [
         {
             question: String,
-            choices: [String]
-        }
-    ]
-}, {
-    collection: 'survey'
+            answer: String,
+        },
+    ],
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
 });
-module.exports = mongoose.model('Survey', surveyModel);
-//# sourceMappingURL=surveyModel.js.map
+
+module.exports = mongoose.model('UserSurveyTaking', userSurveyTakingSchema);

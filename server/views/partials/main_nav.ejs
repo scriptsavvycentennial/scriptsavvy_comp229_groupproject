@@ -9,52 +9,52 @@
       <ul class="navbar-nav ms-auto">
 
         <% if (title == "Home"){ %>
-        <li class="nav-item active">
-        <% } else  { %>
-        <li class="nav-item">
-        <% } %>
+          <li class="nav-item active">
+          <% } else  { %>
+          <li class="nav-item">
+          <% } %>
           <a class="nav-link" href="/home"> Home </a>
         </li>
         
         <% if (title == "Survey") { %>
-          <li class="nav-item active">
-          <% } else  { %>
-          <li class="nav-item">
-          <% } %>
+            <li class="nav-item active">
+            <% } else  { %>
+            <li class="nav-item">
+            <% } %>
             <a class="nav-link" href="/survey-list/add"> Create a new Survey </a>
           </li>
 
-        <% if (title == "Survey List") { %>
+        <% if (title == "Take a Survey") { %>
+            <li class="nav-item active">
+            <% } else  { %>
+            <li class="nav-item">
+            <% } %>
+            <a class="nav-link" href="/survey-list"> Take a survey </a>
+          </li>
+
+        <% if (title == "About") { %>
           <li class="nav-item active">
           <% } else  { %>
           <li class="nav-item">
           <% } %>
-            <a class="nav-link" href="/survey-list"> Survey List </a>
-          </li>
-
-        <% if (title == "About") { %>
-        <li class="nav-item active">
-        <% } else  { %>
-        <li class="nav-item">
-        <% } %>
           <a class="nav-link" href="/about"> About Us </a>
         </li>
 
         <% if (title == "Contact") { %>
-        <li class="nav-item active">
-        <% } else  { %>
-        <li class="nav-item">
-        <% } %>
+          <li class="nav-item active">
+          <% } else  { %>
+          <li class="nav-item">
+          <% } %>
           <a class="nav-link" href="/contact-list"> Contact </a>
         </li>
 
-        <% if (isAuthenticated == true) { %>
-          <li class="navbar-text"><i class="fas fa-lg fa-user"></i>Welcome, <%= displayName  %></li>
+        <% //(THIS DOES NOT WORK FOR NOW) if (isAuthenticated == true) { %>
+          <li class="navbar-text"><i class="fas fa-lg fa-user"></i>Welcome, <%=// displayName  %></li>
           <li class="nav-item"><a href="/logout" class="nav-link">
            Logout</a></li>
-        <% } else if(isAuthenticated == false){ %>
+        <% //} else if(isAuthenticated == false){ %>
           <li class="nav-item"><a href="/login" class="nav-link">
             Login</a></li>
-        <% } %>
+        <% //} %>
     </div>
   </nav>
